@@ -1,0 +1,1116 @@
+\documentclass[12pt]{article}
+
+
+%\usepackage{a4wide}
+\usepackage{amsfonts}
+
+\usepackage{pdfsync}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+
+%\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{enumerate}
+%\usepackage{amsthm}
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+%\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{amsthm}
+
+\usepackage[paper size={210mm,297mm},left=20mm,right=20mm,top=20mm,bottom=25mm]{geometry}
+
+
+\definecolor{miguel}{rgb}{0.2,0.2,1}
+\definecolor{marieamelie}{rgb}{1,0.2,0}
+\newcommand{\MA}[1]{\textcolor{marieamelie}{#1}}
+\newcommand{\Miguel}[1]{\textcolor{miguel}{#1}}
+
+
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{examp}[lemma]{Example}
+\newtheorem{remark}[lemma]{Remark}
+\numberwithin{lemma}{section}
+\newenvironment{example}[1]{\begin{examp} #1: % \newline \rm 
+\normalfont }{\end{examp}}
+%\newenvironment{defi}{}{\par}
+
+%\newenvironment{proof}
+ %{\begin{trivlist}\item[\textit{ Proof:}]\,}
+ %{$\Box$\end{trivlist}}
+\newcommand{\produ}[1]{\langle #1\rangle}
+\newcommand{\E}{\overline{E}}
+\newcommand{\PP}{\overline{P}^{n+1}}
+\newcommand{\DD}{\mathbf{D}}
+\renewcommand{\S}{\mathbf{S}}
+%\newcommand{\kaa}{ \left(c-\ep\frac{(a')^2}{a^2}\right) }
+\newcommand{\g}[1]{g\left(#1\right)}
+\newcommand{\WW}{\sqrt{x_1^2+\vert \nabla u\vert^2}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\H}[1]{\mathbb{H}^{#1}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ti}[1]{\widetilde{#1}}
+\newcommand{\dt}{\partial_t}
+\newcommand{\na}{\nabla}
+\newcommand{\grad}{\nabla} 
+\newcommand{\s}{\mathfrak{s}}
+\newcommand{\nab}{\bar\nabla}
+\newcommand{\te}{\widetilde{\ep}}
+\newcommand{\W}{\mathbb{H}^n}
+\newcommand{\BB}{\mathbf{B}}
+
+\newcommand{\h}{\mathbf{h}}
+
+\title{Killing translating solitons from submersions}
+\author{
+\begin{tabular}{cc}
+Marie-Am\'elie Lawn   & Miguel Ortega\\
+\small Imperial College London (UK)  &\small Universidad de Granada (Spain)\\
+\small m.lawn@imperial.ac.uk  &\small miortega@ugr.es
+\end{tabular}
+}
+\date{}
+
+
+
+\begin{document}
+\maketitle
+\begin{abstract} 
+Bla....
+\end{abstract}
+
+
+\noindent \textit{Keywords:} Translating soliton, submersions, pseudo-Riemannian manifolds, Lie group.
+
+\noindent \textit{MSC[2010] Classification:} 53C44, 53C21, 53C42, 53C50.
+\section{Introduction}
+\MA{expend the intro}
+Translating solitons of the mean curvature flow have been widely studied in $\mathbb{R}^{n+1}$ and, more recently, works in other ambient spaces started to emerge \cite{AS,S}. In \cite{LO} the authors considered the special case where the ambient space is a product of a semi-Riemannian
+manifold with the real line $(M\times\mathbb{R}, g+dt^2)$ and  (vertical) graphical translating solitons are evolving in the direction of the Killing vector $\partial t$. More precisely we studied cohomegeneity one actions by isometries on suitable open subsets and used techniques from submersion theory to reduce the mean curvature flow equation to a simpler ODE and gave new examples of translators. In particular we gave a complete classification of rotationally invariant in Minkowski space in the case where they are rotationally invariant. Since then, different papers \cite{LM,KO} have explored the idea of translating along a Killing vector field and \cite{ALR} introduces a very general definition of mean curvature flow solitons with respect to closed conformal vector fields. In this paper we focus on the case of manifolds admitting a Killing vector field with integrable orthogonal distribution. It is well-known that in this case the geometry is locally a warped product or more precisely a codimension one foliation by totally geodesic slices allowing us to consider Killing graphs (see for example \cite{DHL, LW}). We recall this construction in section \ref{Killing graph}. Generalizing the techniques used in \cite{LO}, we specialize our study in section \ref{Warped products, submersions and Killing graphs} to the case of Riemannian submersions with constant mean curvature fibers where the Killing vector field is basic. In this case   
+the existence of a translating soliton on the total space is equivalent to the existence of a perturbed translating solitons on the base. In particular if the base is one dimensional, the problem reduces again to the study of a first order ODE. [\MA{HERE SAY WHY THE CONSTRUCTION IS NICE: which examples to we want to cite? Of course it includes our previous paper in a general pseudo-Riemannian setting, i.e. classical products, but we can also speak about homogeneous spaces, Robertson Walker spaces, static Lorentzian spaces....}]. In section \ref{An application: the Hyperbolic Space} we illustrate our technique with the example of the hyperbolic space seen as a foliation by horospheres $\pi:\mathbb{H}^{n+1}\rightarrow\mathbb{H}^2$, where the Killing vector field $K$ we use on $\mathbb{H}^{n+1}$ is a translation vector field and we give a complete classification (\MA{not sure at all of this}). Some of these examples have already been found in \cite{LM} (\MA{not sure exactly either which one, also we should cite the "tesis" you just found}), but with completely different tools.
+
+\section{Killing graphs}\label{Killing graph}
+We are first going to recall the Killing graph construction and derive the corresponding equation for a graphical Killing translator. 
+\subsection{Basics}\label{basics}
+Let $N^{n+1}$ be a semi-Riemannian manifold with metric $g$ and connection $\nabla$ endowed with a non-vanishing  Killing vector field $K$. Let $F:\Sigma\rightarrow N$ be a submanifold with mean curvature vector $\vec{H}$.  
+\begin{definition} $F$ is af Killing Translating Soliton, or a \textbf{Rigid Translator}, of the mean curvature flow with respect to $K$, if 
+\begin{eqnarray}\label{def_TKS} \vec{H}= K^{\perp},
+\end{eqnarray}
+where $K^{\perp}$ is the orthogonal projection along the immersion (the projection of $K$ on the normal bundle along the immersion.)
+\end{definition}
+We will now focus on the particular important case where the flow lines of $K$ are complete and the distribution orthogonal to $K$
+\[\mathcal{D}_K^{\perp}:=\{v\in T_pN:g(v,K)=0\}\]
+is integrable.
+
+Since $K$ is Killing, the leaves of $\mathcal{D}_K^{\perp}$ are totally geodesic. Note that the integrability condition yields that the orbits cannot have any  self-intersections and the completeness of the integral curves eliminates any pathological examples like the flat 2-torus case admitting constant vector fields with dense orbits. Using the classical map $\pi:\R\rightarrow \mathbb{S}^1$, $\pi(t)=(\cos(t),\sin(t))$, we can assume that the orbits are not closed, simply by a lift up. Locally, the manifold is therefore diffeomorphic to $L\times J$, with $L$ a leaf of the orthogonal distribution for some interval $J\subset\R$ and we can assume that the manifold is $N=L\times\R$, with $(t,p)\in N$ so that  $K=\partial_t$ holds.
+
+\begin{proposition}\label{orthogonal_dis_int} Let $X$ be a non-vanishing vector on $N$. Let $\mathcal{D}^{\perp}_X$ be the distribution orthogonal to $X$. Then $\mathcal{D}^{\perp}_X$ is integrable if and only if $\alpha_X\wedge d\alpha_X=0$, where $\alpha_X$ is the 1-form dual to $X$.
+\end{proposition}
+\begin{proof} Let $\beta\in\Omega^m(M)$ with $m\leq n$ and let $Y$ be a vector field on $M$ which does not belong to $\mathcal{D}^{\perp}$. Then for $\xi_1,\dots, \xi_m\in \mathcal{D}^{\perp}_X$ we have
+\[(\alpha_X\wedge\beta)(\xi_1,\dots \xi_m,Y)=(-1)^m\alpha_X(Y)\beta(\xi_1\dots \xi_m).\]
+Then since locally $\Lambda^m\mathcal{D}^{\perp}_X\wedge \{Y\}+\Lambda^{m+1}\mathcal{D}^{\perp}_X=\Lambda^{m+1}N$, this shows that  $\alpha_X\wedge\beta=0$ is equivalent to $\beta(\xi_1\dots \xi_m)=0$ for all $\xi_i\in \mathcal{D}^{\perp}_X$, i.e $\iota_{\Lambda^m\mathcal{D}^{\perp}_X}\beta=0$. 
+
+Let now $\xi_1,\,\xi_2$ be vector fields in $\mathcal{D}^{\perp}_X$. We have
+\[d\alpha_X(\xi_1\wedge\xi_2)=\xi_1\alpha_X(\xi_2)-\xi_2\alpha_X(\xi_1)-\alpha_X([\xi_1,\xi_2])=-\alpha_X([\xi_1,\xi_2]).\]
+Hence $\iota_{\Lambda^2L}d\alpha_X=0$ if and only if $[\mathcal{D}^{\perp}_X,\mathcal{D}^{\perp}_X]
+\subset\mathcal{D}^{\perp}_X$, which is by Frobenius Theorem exactly the condition for  $\mathcal{D}^{\perp}_X$ to be integrable. We finally get the result by our previous discussion setting $\beta= d\alpha_X$. 
+\end{proof}
+Denote by $\phi:\mathbb{R}\times L\rightarrow \mathbb{R}\times L$ the flow generated by $K$. Hence $\phi_t:=\phi(t,\cdot)$ is an isometry for all $t$. Given a function $u\in C^2(\Omega)$, with $\Omega\subset L$ open and connected, the \textit{Killing graph} associated with $u$ is the hypersurface $\Sigma$ given by the map 
+\[F:\Omega\rightarrow N, F(p)=\phi(u(p),p)=\phi_{u(p)}(p)=(u(p),p).\]
+%In the case of a non-vanishing Killing vector field $K$, again by Frobenius integrability Theorem, 
+We can pick local coordinates $(x_1,\dots, x_{n+1})$ such that $\{\partial_{x_i}: 1\leq i<n+1\}$ span $\mathcal{D}^{\perp}_K$ and $K=\partial_{x_{n+1}}$. Note that $\alpha_K=\iota_Kg=\sum_{j=1}^{n+1} g_{n+1j}dx_j$. Now by definition we have for the Lie derivative of the metric that $\mathcal{L}_Kg=0$, hence in coordinates $\partial_{n+1}g_{ij}=0$ for all $i,j$. Since $g(\partial_i, \partial_{n+1}) = 0$ for all $i \leq n$,  in our coordinates the expression of the metric is
+\[g=\sum_{i,j=1}^{n}g_{ij}dx_i\otimes dx_j + c\, dx_{n+1} \otimes dx_{n+1}  ,\]
+where the coefficients $g_{ij}$ and function $c>0$ do not depend on $x_{n+1}$, and $c= g(K,K)$.
+Therefore, $N$  can be locally written as a warped product.
+% $\mathbb{R}\times_{\rho} L$ with metric $g=h+\rho dt^2$, with $\rho=\frac{1}{\|K\|^2}$ and $h=\phi_t^*g$. Note that $h$ does not depend on $t$ since $K=\frac{\partial}{\partial t}$ is Killing.   
+%It is clear that in this case the integral leaves are totally geodesic hypersurfaces. %\footnote{Very important for section 2}
+
+For the sake of simplicity, we take a local orthogonal frame $(E_1,\ldots,E_{n+1})$ on $N^{n+1}$ such that $E_{n+1}=\color{red}{\partial_{n+1}/\sqrt{c}}$, $g(E_i,E_j)=\delta_{ij}$ for any $i=1,\ldots,n$, $c=g(K,K)>0$, and $E_i$, $i<n+1$, are tangent to the leaves. \textcolor{red}{Since $c=g(K,K)$, then its normalized vector is $K/\sqrt{c}$. Be careful, because we mix this up in this proof and in the rest of the paper}. 
+
+
+
+
+Given $p\in\Omega$ and $\xi\in T_p\Omega$, note that 
+\[F_* \xi|_p = (\phi_{u(p)})_* \xi|_p + \xi|_p(u) K|_{\phi_{u(p)}(p)} = (\phi_{u(p)})_* (\xi|_p + \xi|_p(u)K|_p)
+=(\xi(p),du_p(\xi)).
+\]
+
+We now want to compute our evolution equation in terms of Killing graphical coordinates. 
+%We assume without loss of generality that $u(p)=0$. 
+%Again we consider the above local coordinates of $N$, where $\frac{\partial}{\partial_{x_1}}, \ldots, \frac{\partial}{\partial_{x_n}}$ are tangent to the leaves and $\frac{\partial}{\partial_{x_{n+1}}}=K$. Now 
+We can extend $u$ to a function on the neighborhood of $p$ in $N$ depending only on the first $n$ coordinates. In general, for any arbitrary function $\theta$, we denote $\theta_i:=E_i(\theta)$, $i=1,\ldots,n+1$. 
+
+If $\nabla u=\sum_k u_kE_k$ is the gradient of $u$, its norm is $|\nabla u|^2=\sum_ku_k^2$ and we define 
+\begin{equation}\label{W} 
+W:=\sqrt{\frac{1}{c}+|\nabla u|^2}.
+\end{equation}
+The above considerations ensure that 
+\[ u_i=E_i(u) = du (E_i), \ u_{n+1}=K(u)=0, 
+\quad 
+F_* E_i = E_i+u_iK, \ i=1,\ldots,n.\]
+
+
+
+%such that the tangent fields $\{cE_i\}_{i=1}^{n+1}$ form an orthonormal basis of $TN$, with $c:=\frac{1}{\sqrt{g(K,K)}}$. Denote $u_i:=\frac{\partial u}{\partial x_i}$. 
+ At $p \in L$ the metric $\gamma$ induced on $\Sigma$ is given by $\gamma(E_i,E_j)= \gamma_{ij} = g\left(F_*E_i,F_*E_j\right)=g\left(E_i+u_iK,E_j+u_jK\right)$, 
+and therefore, 
+\[\gamma_{ij}=\delta_{ij}+c\,u_iu_j,\]
+Note that the inverse marix of $\gamma$ is given by 
+\[\gamma^{ij}=\delta_{ij}-\frac{1}{W^2}\,u_iu_j. \]
+
+
+The hypersurface $\Sigma$ can be thought of as the level set $G(p,x_{n+1})=x_{n+1}-u(p)=0$ and a unit normal vector to $\Sigma$ is consequently given by $\nu:=\frac{\nabla G}{|\nabla G|}$. More precisely, a unit vector field normal to the hypersurface $\Sigma$ is given by 
+\[\nu:=\frac{1}{W}\left(\frac{1}{c}K-\nabla u\right).\]
+Note that 
+\[ g(K,\nu)=1/W, \quad g(\nu,\nu)=1.\]
+
+The next step is to compute the second fundamental form $A$ and the mean curvature $H$ of $F$. The second fundamental form is given by
+\begin{align*}
+&A\left(E_i,E_j\right)
+=g\left(\nabla_{F_*E_i}F_*E_j,\nu\right) =g\left(\nabla_{E_i+u_iK}\big(E_j+u_jK\big),\nu\right)\\
+&=g\left(\nabla_{E_i}E_j,\nu\right)
++g\left(\nabla_{E_i}\big(u_jK\big),\nu\right)
++g\left(\nabla_{u_iK}E_j,\nu\right)
++g\left(\nabla_{u_iK} \big(u_jK\big),\nu\right)\\
+&=g\left(\nabla_{E_i}E_j,\nu\right)
++u_{ij}g\left(K,\nu\right)
++u_jg\left(\nabla_{E_i}K,\nu\right)
++u_ig\left(\nabla_{K}E_j,\nu\right)
++u_iu_jg\left(\nabla_{K} K,\nu\right)
+%+u_iu_{j,n+1}g\left(K,\nu\right). 
+\end{align*}
+Let $A^L$ be the second fundamental of the totally geodesic leaves of the foliations, which hence vanishes identically. Furthermore using Koszul's formula we have
+\begin{align*}
+&2g\left(\nabla_KE_i,E_j\right)
+=K\left(g\left(E_i,E_j\right)\right)
++E_ig\left(K,E_j\right)-E_jg\left(K,E_i\right)\\
+& =K\left( g\left(E_i,E_j\right)\right)=0
+\end{align*}
+and therefore $g(\nabla_KX,Y)=0$ for any vectors $X,Y$ tangent to the leaves. Recall $g(\nu,K)=1/W$ and $0=\mathcal{L}_kg(K,K)=K(g(K,K))=2g(\nabla_KK,K)$. Consequently,  
+\begin{align*}
+A\left(E_i,E_j\right)=&
+\frac{1}{Wc} g\left(\nabla_{E_i}E_i,K\right)
+%A^L\left(E_i,E_j\right)
+-\frac{1}{W}g\left(\nabla_{E_i}E_j,\nabla u\right) +\frac{u_{ij}}{W} 
++u_jg\left(\nabla_{E_i}K,\frac{1}{c W}K\right) \\
+& -\frac{1}{W}u_jg\left(\nabla_{E_i}K,\nabla u\right)
++u_ig\left(\nabla_{K}E_j,\frac{1}{cW}K\right) \\
+&+u_ig\left(\nabla_{K}E_j,-\frac{1}{W}\nabla u\right)
++u_iu_jg\left(\nabla_{K} K,\frac{1}{W}\Big(\frac{1}{c}K-\nabla u\Big)\right)\\
+=&\frac{-1}{W}g\left(\nabla_{E_i}E_j,\nabla u\right)+\frac{u_{ij}}{W}
++\frac{u_j}{Wc}g\left(\nabla_{E_i}K,K\right)
+%-\frac{u_j}{W}A^L\left(E_i,\nabla u)\right)
++\frac{u_j}{W}g\left(K,\nabla_{E_i}\nabla u\right)\\
+&+\frac{u_i}{c W} g\left(\nabla_{K}E_j,K\right)-\frac{u_i}{W}g\left(\nabla_{K}E_j,\nabla u\right)-\frac{u_iu_j}{W}g\left(\nabla_{K} K,\nabla u\right)\\
+=& \frac{-1}{W}g\left(\nabla_{E_i}E_j,\nabla u\right)
++\frac{u_{ij}}{W}+\frac{u_j}{cW}g\left(\nabla_{E_i}K,K\right)
++\frac{u_i}{cW}g\left(\nabla_{K}E_j,K\right)\\
+&-\frac{u_iu_j}{W}g\left(\nabla_{K} K,\nabla u\right)
+\end{align*}
+Using the fact that $K$ is Killing, we have
+\[
+c_i:=E_i(g(K,K))=2g\left(\nabla_{E_i}K,K\right)=-2g\left(\nabla_KK,{E_i}\right)=2g\left(\nabla_{K}E_i,K\right).
+\]
+Moreover 
+\[g\left(\nabla_{E_i}E_j,\nabla u\right)
+=E_i(g(E_j,\nabla u))-g\left(\nabla_{E_i}\nabla u,E_j\right)=u_{ij}-g(\nabla_{E_i}\nabla u,E_j)\]
+and finally
+\begin{equation}
+A\left(E_i,E_j\right)=\frac{1}{W}g\left(\nabla_{E_i}\nabla u,E_j\right)-\frac{u_iu_j}{W}g\left(\nabla_{K} K,\nabla u\right)+\frac{u_jc_i}{2cW}+\frac{u_ic_j}{2cW}.
+\end{equation}
+We now compute the mean curvature of the Killing graph.
+
+\begin{eqnarray*}
+nH&=&tr_{\gamma}A = \sum_{i,j=1}^n \gamma^{ij}A(\partial_i,\partial_j) \\ &=&\sum^{n}_{i,j=1}\left(\delta_{ij}-\frac{1}{W^2}\,u_iu_j\right)\frac{1}{W}\left(g(\nabla_{E_i}\nabla u,E_j)-u_iu_jg\left(\nabla_{K} K,\nabla u\right)+\frac{u_jc_i}{2c}+\frac{u_ic_j}{2c}\right)\\	
+&=&\frac{\mathrm{div}(\nabla u)}{W} -\sum^{n}_{i,j=1}\frac{1}{W^3}u_iu_jg\left(\nabla_{E_i}\nabla u,E_j\right)\\ 
+&&+\frac{1}{W}\sum^{n}_{i,j=1}\delta_{ij}\left[-u_iu_jg\left(\nabla_{K} K,\nabla u\right)+\frac{u_jc_i}{2c}+\frac{u_ic_j}{2c}\right]\\
+&&-\frac{1}{W^3}\sum^{n}_{i,j=1}\left[-u_i^2u_j^2g\left(\nabla_{K} K,\nabla u\right)+\frac{u_iu_j^2c_i}{2c}+\frac{u_i^2u_jc_j}{2c}\right]\\
+&=&\frac{\mathrm{div}(\nabla u)}{W} 
+-\sum^{n}_{i,j=1}\frac{1}{W^3}u_iu_jg\left(\nabla_{E_i}\nabla u,E_j\right) +\frac{1}{W}\left[-\sum^{n}_{i=1}u_i^2g\left(\nabla_{K} K,\nabla u\right)+\sum^{n}_{i=1}\frac{u_ic_i}{c}\right]\\
+&&-\frac{1}{W^3}\left[-|\nabla u|^4
+g\left(\nabla_{K} K,\nabla u\right)+\frac{1}{c}\sum^{n}_{i,j=1}u_ic_iu_j^2\right]\\
+&=&\frac{\mathrm{div}(\nabla u)}{W} -\sum^{n}_{i,j=1}\frac{1}{W^3}u_iu_jg\left(\nabla_{E_i}\nabla u,E_j\right)\\
+&&+\frac{1}{W^3}\left[-W^2|\nabla u|^2g\left(\nabla_{K} K,\nabla u\right)+W^2\frac{g(\nabla c,\nabla u)}{c}\right]\\
+&&-\frac{1}{W^3}\left[-|\nabla u|^4g\left(\nabla_{K} K,\nabla u\right)+\frac{g(\nabla c,\nabla u)|\nabla u|^2}{c}.\right]
+\end{eqnarray*}
+Bearing in mind \eqref{W}, we get 
+\[ nH = \frac{\mathrm{div}\nabla u}{W}-\sum^{n}_{i,j=1}\frac{1}{W^3}u_iu_jg(\nabla_{E_i}\nabla u,E_j)+\frac{1}{c W^3}\left[-|\nabla u|^2g\left(\nabla_{K} K,\nabla u\right)+\frac{1}{c}g(\nabla c,\nabla u)\right].
+\]
+By our previous computations, $-2g\left(\nabla_{K} K, E_i\right)=c_i$, we have that $\nabla_{K} K=-\frac{1}{2}\nabla c$ and then 
+\begin{equation} \label{eq_MC}
+nH=\frac{\mathrm{div}(\nabla u)}{W} -\sum^{n}_{i,j=1}\frac{1}{W^3}u_iu_jg(\nabla_{E_i}\nabla u,E_j)+\frac{1}{c W^3}g(\nabla c,\nabla u)\left(\frac{1}{2}|\nabla u|^2+\frac{1}{c}\right).
+\end{equation}
+Notice now that 
+\begin{eqnarray*}
+\frac{\mathrm{div}(\nabla u)}{W}&=&
+\mathrm{div}\left(\frac{\nabla u}{W}\right) -g\left(\nabla\left(\frac{1}{W}\right),\nabla u\right) =\mathrm{div}\left(\frac{\nabla u}{W}\right)+\sum_{i=1}^n\frac{W_i}{W^2}u_i\\
+&=&\mathrm{div}\left(\frac{\nabla u}{W}\right) 
++\sum_{i=1}^n  \frac{1}{2W^3}\left( -\frac{c_i}{c^2}+2g(\nabla_{E_i}\nabla u,\nabla u)\right)u_i\\
+&=&\mathrm{div}\left(\frac{\nabla u}{W}\right) +\sum_{i,j=1}^n\frac{1}{W^3}u_iu_jg(\nabla_{E_i}\nabla u,E_j)-\frac{1}{2c^2W^3}g(\nabla c,\nabla u).
+\end{eqnarray*}
+By using equation \eqref{eq_MC}, we obtain 
+\begin{eqnarray*}
+nH=\mathrm{div}\left(\frac{\nabla u}{W}\right)+\frac{1}{W^3}\left(\frac{1}{2c}|\nabla u|^2+\frac{1}{2c^2}\right)g(\nabla c,\nabla u).
+\end{eqnarray*}
+and therefore, 
+\begin{eqnarray}\label{H_Killinggraph}
+nH=\mathrm{div}\left(\frac{\nabla u}{W}\right)+\frac{1}{2Wc}g(\nabla c,\nabla u).
+\end{eqnarray}
+Obviously from equation \eqref{def_TKS} we have 
+\[nH=g(\vec{H},\nu)=g(K,\nu)=g\left(K,\frac{1}{W}\Big(\frac{1}{c}K-\nabla u\Big)\right)=\frac{1}{W}.\]
+consequently equation \eqref{H_Killinggraph} yields, finally
+\begin{proposition} \label{EDPproposition}
+The map $F:\Omega\rightarrow N$ is a Rigid Translator if, and only if, the map $u:\Omega\rightarrow\mathbb{R}$ satisfies the following PDE,
+\begin{equation}\label{EDP}
+\mathrm{div}\left(\frac{\nabla u}{W}\right)=\frac{1}{W}-\frac{1}{2Wc}g(\nabla c,\nabla u).
+\end{equation}
+\end{proposition}
+% % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % 
+\begin{corollary} Let $(L,g_{_L})$ be an orientable, compact,  without boundary Riemannian manifold. Given a smooth function $c:L\rightarrow\mathbb{R}$, $c\neq 0$, consider the warped product $(N=L\times\mathbb{R},g=g_{_L}+c\,dt^2)$. Assume that $L$ admits a globally defined Rigid Translator $F:L\rightarrow N$ with respect to $K=\partial_t$, with associated function $u\in C^2(L)$. Let $dw$ be the induced volume form on $L$. Then,
+\[ \int_L \frac{dw}{W}=
+\int_L \frac{g\big(\nabla u,\nabla \log(c)\big)}{2W}dw>0.
+\]
+\end{corollary}
+
+\begin{remark} Since $K=\partial_t$ is Killing, we have $0=\mathcal{L}_{K}(K,K)=K(g(K,K)) -2g([K,K],K) = K(c)=\partial_t c$. This is why we cannot take $c:L\times\mathbb{R}\rightarrow\mathbb{R}$. 
+\end{remark}
+
+
+%Let $(N=L\times \mathbb{R},g=)$ be an orientable semi-Riemannian manifold admitting an everywhere non-zero Killing vector field $K$ such that its orthogonal distribution is integrable. Assume that one of the leafs, $L$, is spacelike, orientable, compact and without boundary, and it admits a globally defined Rigid Translator $F:L\rightarrow N$ with respect to $K$, with associated function $u\in C^2(L)$. Let $dw$ be the induced volume form on $L$. Then,
+%\[ \int_L \frac{dw}{W}= 
+%\int_L \frac{g\big(\nabla u,\nabla \log(c)\big)}{2W}dw>0.
+%\]
+%In particular, $L$ cannot be contained in a region where $c$ is a constant function. 
+%}
+%\end{corollary}
+%\begin{corollary}
+%Let $(N,g)$ be an orientable semi-Riemannian manifold admitting an everywhere non-zero Killing vector field $K$ such that its orthogonal distribution is integrable. Assume that one of the leafs, $L$, is spacelike, orientable, compact and without boundary, and it admits a globally defined Rigid Translator $F:L\rightarrow N$ with respect to $K$, with associated function $u\in C^2(L)$. Let $dw$ be the induced volume form on $L$. Then,
+%\[ \int_L \frac{dw}{W}=
+%\int_L \frac{g\big(\nabla u,\nabla \log(c)\big)}{2W}dw>0.
+%\]
+%In particular, $L$ cannot be contained in a region where $c$ is a constant function. 
+%\footnote{I have the feeling that there are too many hypothesis. Is it true that if $N$ is already orientable, then any closed leaf will be orientable? 
+%}
+%\end{corollary}
+\begin{proof}
+Suppose that there exist a globally defined Rigid Translator $F:L\rightarrow N$ with respect to $K$. Then, for some function $u\in C^2(L)$, equation \eqref{EDP} is satisfied. We just need to take integration on \eqref{EDP}.
+\end{proof}
+\begin{corollary} An orientable, compact, Riemannian manifold $(M,g_{_M})$ without boundary cannot admit any globally defined Translating Soliton in $(M\times\mathbb{R},g_{_M}\times \varepsilon dt^2)$, for $\varepsilon=\pm 1$. 
+\end{corollary}
+%\begin{corollary} Let $(M,g_{_M})$ be an orientable, compact, Riemannian manifold without boundary. Choose $\ep\in\{1,-1\}$. Then, there do not exist any globally defined function $u:M\rightarrow\R$ such that its graph map $\Gamma:M\rightarrow (M\times\mathbb{R},g_{_M}\times \varepsilon dt^2)$, $\Gamma(p)=(p,u(p))$ is a Translating Soliton. 
+%\end{corollary} }
+%\Miguel{
+\begin{proof} Assume that there exist one such Translating Soliton. Then, it holds $c=1$, and \eqref{EDP} becomes 
+\[ \mathrm{div}\left(\frac{\nabla u}{W}\right)=\frac{1}{W}. \]
+By integrating this equation, we obtain the following contradiction:
+\[ 0 = \int_M\mathrm{div}\left(\frac{\nabla u}{W}\right) vol_g(M)= \int_M\frac{1}{W}vol_g(M)>0.\]
+\end{proof} 
+In particular, the round sphere $\mathbb{S}^n$ cannot admit globally defined Translating Solitons $\Gamma:\mathbb{S}^n\rightarrow\mathbb{S}^n\times\R$.
+
+
+
+\section{Warped products, submersions and Killing graphs}\label{Warped products, submersions and Killing graphs}
+We will prove the following general theorem which is a generalization of our result from \cite{LO} to warped products and we will first introduce some notations and useful formulas. For more details about submersions we refer to {\cite{Escobales} and the classical O'Neill's book \cite{ON}. \\
+
+If $\pi:(N,g_N)\rightarrow(B,g_B)$ is a Riemannian submersion, every vector field $X$ in $TN$ can be uniquely
+written as $X=\mathcal{H}X+\mathcal{V}X$ where
+$\mathcal{H}X$ (resp. $\mathcal{V}X$) is the horizontal (resp.
+vertical) component. A vector field $X\in\Gamma(TN)$ is
+called horizontal (resp. vertical), if  for all $x\in N$,
+$X_{x}$ has no vertical (resp. no horizontal) component. It is called projectable, if there exists a vector field $\check{X}\in\Gamma(TB)$ such
+ that for all $x\in N$,
+ $d\pi(X_{x})=\check{X}_{\pi(x)}$, $X$ and
+ $\check{X}$ are called $\pi$-related. It is called basic, if it is projectable and horizontal.
+
+\begin{remark}\label{remark_submersions} \normalfont 
+
+
+\begin{itemize}
+\item[1)] For every vector field $\check{X}$ in $TB$ there exists a unique horizontal vector field in $\Gamma(TN)$ which is $\pi$-related to $\check{X}$. It is called the horizontal lift of $\check{X}$ and denote it by $X^{\h}$.
+\item[2)] If $X$, $Y$ are basic vector fields on $N$ $\pi$-related to $\check{X}$, $\check{Y}$, then
+$g_N(X,Y)=\pi^*g_B(\check{X},\check{Y})$. Moreover $\mathcal{H}\nabla^N_XY$ is the basic vector field corresponding to $\pi^*\nabla^B_{\check{X}}\check{Y}$, where $\nabla^N$ (respectively $\nabla^B$) are the Levi-Civita connection on $M$ (respectively $B$).
+\end{itemize}
+\end{remark}
+Finally let $W$, $Z$ be vector fields in $TM$. We recall the definition of the two O'Neill fundamental tensors.
+\begin{eqnarray}
+T_WZ&:=&\mathcal{H}\nabla^M_{\mathcal{V}W}(\mathcal{V}Z)+\mathcal{V}\nabla^M_{\mathcal{V}W}(\mathcal{H}Z),\nonumber\\
+A_WZ&:=&\mathcal{V}\nabla^M_{\mathcal{H}W}(\mathcal{H}Z)+\mathcal{H}\nabla^M_{\mathcal{H}W}(\mathcal{V}Z)
+\end{eqnarray}
+Note that if $W$ and $Z$ are vertical, $T$ is the second fundamental form of the fibers. Hence  the fibers of the submersion are totally geodesic if and only if $T\equiv 0$. We recall that the submersion is harmonic, if and only if the mean curvature of the fiber $h=0$. Further, let $X$, $Y$ be horizontal vectors, and $U$, $V$ be vertical vectors we recall the following useful formulas
+\begin{eqnarray}\label{connection_ONtensors}
+\nabla^M_UV&=&T_UV+\hat{\nabla}_UV, \quad \nabla^M_UX=\mathcal{H}\nabla^M_VX+T_UX\\
+\nabla^M_XU&=&A_XU+\mathcal{V}\nabla^M_XU,\quad \nabla^M_XY=\mathcal{H}\nabla^M_XY+A_XY
+\end{eqnarray}
+where $\hat{\nabla}$ is the connection on the fibers.
+
+
+In the following we will consider a submersion $\pi:N\rightarrow B$ and a Killing vector field $K$ tangent to the leaves of $\pi$ (hence orthogonal to the fibers $\pi^{-1}(x)$). This means that the leaves of the integrable orthogonal distribution given by $K$ are orthogonal to the leaves of $\pi$ and moreover their intersection with the leaves of $\pi$ are the leaves of the orthogonal distribution of the projection of $K$ on $B$.
+
+\begin{theorem}\label{submersions_and_Rigid_sol}
+Let $\pi:(N,g_N)\rightarrow (B,g_B)$ be a Riemannian submersion. Assume that 
+%with constant mean curvature fibers, where 
+$N$ admits a non-vanishing basic Killing vector field $\widetilde{K}$  with integrable orthogonal distribution. Then the vector field $K:=\pi_*{\widetilde{K}}$ is a non-vanishing Killing vector field on $B$ with integrable orthogonal distribution. Moreover %With the same notation as in the previous section, 
+given $u \in C^2(\Omega_{L_B})$ and $F$, $\widetilde{F}$ the Killing graphs with respect to $u$ and
+$u \circ \pi$. Assume that the mean curvature $H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}$ of the fibers in the direction of $\nu_{\widetilde{F}}$ is constant along the fibers. 
+%, then $\widetilde{F}$ 
+%given $u \in C^2(\Omega)$ and 
+%$F:\Omega\rightarrow N$, $F(x)=\phi(x,u(x))$ the Killing graph with respect to $K$, then (?) $F(\Omega)$
+% is a rigid translator if and only if 
+%and $\widetilde{F}:M\rightarrow M\times\R$ be the map $\widetilde{F}(x)=\phi(x,u\circ \pi(x) )$. Then $\widetilde{F}$ is a rigid translator if and only if $F:B$ satisfies the equation
+% $$\vec{H}_{F(\Omega_{L_B})}=K^\perp + H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}\nu_{F}.$$
+\begin{enumerate}[a)]
+\item $\tilde{F}$ is a rigid translator if, and only if, $\vec{H}_{F}=K^{\perp}- H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{F}$.
+\item $F$ is a rigid translator if, and only if, 
+$\vec{H}_{\widetilde{F}}=\tilde{K}^{\perp}+H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}$.
+\end{enumerate}
+\end{theorem} 
+\begin{proof}
+Consider the submersion $\pi:(N,g_N)\rightarrow (B,g_B)$,  
+and the vector field $K:=\pi_*\widetilde{K}$. Since $\widetilde{K}$ is basic,  for the two functions $\widetilde{c}:=g_N(\widetilde{K},\widetilde{K})$ and $c:=g_B(K,K)$, we have that $c\circ \pi=\tilde{c}$. Consider the Lie derivatives on $N$ and $B$. Given $X,Y$ vector fields on $B$, take respective horizontal lifts $X^{\h},Y^{\h}$ on $N$. Then, \begin{eqnarray*}\mathcal{L}_Kg_B(X,Y)&=&g_B(\nabla_XK,Y)+g_B(X,\nabla_YK)\\&=& 
+g_N\left( \mathcal{H}\widetilde{\nabla}_{X^{\h}}\widetilde{K},Y^{\h}\right) +  g_N\left(X^{\h}, \mathcal{H}\widetilde{\nabla}_{Y^{\h}}\widetilde{K}\right)\\&=&
+g_N\left( \widetilde{\nabla}_{X^{\h}}\widetilde{K},Y^{\h}\right) +  g_N\left(X^{\h}, \widetilde{\nabla}_{Y^{\h}}\widetilde{K}\right)=
+\mathcal{L}_{\widetilde{K}}g_N(X^{\h},Y^{\h})=0.\end{eqnarray*}
+Therefore, $K$ is also Killing. 
+
+%Locally there exist open neighborhoods $U$ and $V$ around $p$ in $N$ and $q$ in $B$, respectively, \Miguel{and $q=\pi(p)$}. We can pick coordinates $(x_1,\dots, x_n)$ at $p$ and $(x_1\dots, x_{n-k})$ at $q$, such that
+%\[\pi:U=V\times\mathbb{R}^k\rightarrow V,\,(x_1,\dots,x_{n-k},x_{n-k+1},\dots x_n)\mapsto(x_1\dots, x_{n-k}) \]
+%Hence locally the metric takes the form $g_U=g_V+\sum_{i=1}^n\sum_{j=n-k+1}^n g_{ij}(dx_i\otimes dx_j+dx_j\otimes dx_i$).
+
+%Now, as $\widetilde{K}$ is a basic vector field and therefore horizontal, it can be written in the above coordinates as $\widetilde{K}=\sum_{i=1}^kf_i\partial_{x_i}$ and obviously $\mathcal{L}_{\widetilde{K}}g_U=\mathcal{L}_{\widetilde{K}}g_V+\mathcal{L}_{\widetilde{K}}g\sum_{i=1}^n\sum_{j=n-k+1}^n g_{ij}(dx_i\otimes dx_j+dx_j\otimes dx_i$). Restricting to $V\times\{0\}$ we get $\mathcal{L}_{\widetilde{K}}g_U|_{V\times\{0\}}=\mathcal{L}_{\pi_*\widetilde{K}}g_V$. Consequently $\pi_*\widetilde{K}=:K$ is a Killing vector field on $B$. Note that since again $\widetilde{K}$ is basic, $g_N(\widetilde{K},\widetilde{K})=\pi^*g_B(K,K)=:c$.
+
+%Since $\widetilde{K}$ is non-vanishing and has integrable orthogonal distribution, as we saw in section \ref{basics},  $N$ admits a \Miguel{(local)} warped product structure  $L_N\times_{c} \mathbb{R}$ with metric $g=g_{L_N}+c dx_{n+1}^2$, where $L_N$ are the integral leaves of $\mathcal{D}_{\widetilde{K}}^{\perp},$  $\widetilde{K}=\partial x_{n+1}$. 
+
+Given $X,Y\in \mathcal{D}_{K}^{\perp}$, then $$g(\nabla_XY,K) = g_N\left(\mathcal{H}\widetilde{\nabla}_{X^{\h}}Y^{\h},\widetilde{K}\right) = g_N\left(\widetilde{\nabla}_{X^{\h}}Y^{\h},\widetilde{K}\right)=0,$$ since $\mathcal{D}_{\widetilde{K}}^{\perp}$ is integrable with totally geodesic leaves. This proves that $\mathcal{D}_{K}^{\perp}$ is also integrable with totally geodesic leaves. In other words, $B$ admits a local warped product structure $L_B\times_{c} \mathbb{R}$, where $L_B$ are the integral leaves of $\mathcal{D}_{K}^{\perp}$. 
+
+Since $\pi$ is a Riemannian submersion and $\pi_*\widetilde{K}=K$, then  $\pi_*\mathcal{D}_{\widetilde{K}}^{\perp}=\mathcal{D}_{K}^{\perp}$, and therefore, $\pi$ carries each leaf of $N$ onto a leaf of $B$.  Then, $\pi|_{L_N}: L_N\rightarrow L_B$ is a Riemannian submersion with constant mean curvature fibers, since $L_N$ is totally geodesic in $N$ and therefore the second fundamental form for the fiber inside $L_N$ is the restriction of that inside $N$.
+
+
+
+
+%Conversely We are therefore actually considering the submersion $\pi\times 1:(\widetilde{L}\times \R,g_M+cdx_{n+1}^2)\rightarrow (L\times \R,g+c dx_{n+1}^2)$ is such that  the horizontal lift of $K$ is $\widetilde{K}$. 
+
+Now let $\Omega_N\subset L_N$ be an open and connected subset, $v:\Omega_N\subset L_N\rightarrow \R$ a $C^2$-function and let $\phi_N$ be the flow of $\widetilde{K}$.
+ Let $\widetilde{F}(x)=\phi_N(x,v(x))$ be its Killing graph. Similarly, $F(p)=\phi_B(p,u(p))$ for $p\in \Omega_B$, $u:L_B\rightarrow\R$, and by assumption $v:=u\circ\pi$. 
+
+%The rest of the proof is similar to the one of Theorem 1 in \cite{LO}, but 
+Now,  we consider the following commutative diagram% of submersions and warped products, instead of products.
+\[
+\begin{xy}
+ \xymatrix{
+L_N\ar[rr]^{\widetilde{F}} \ar[dd]^{\pi|_{L_N}} & & L_N\times_{c} \mathbb{R}=N\ar[dd]^{\pi|_{L_N}\times 1=\pi}\\
+ & &  \\
+ L_B\ar[rr]^F& &  L_B\times_{c} \mathbb{R}=B 
+}
+\end{xy}
+\]
+
+We first pay attention to the submersion $\pi|_{L_N}$. For each $x_0\in L_N$, we take an open neighborhood $U$ of $x_0$ and a collection
+of projectable vector fields $\{e_i\}_{i=1}^{n-1}$ such that $\{e_i(x)\}_{i=1}^{n-1}$ is an orthonormal basis for $T_xL_N$,
+for all $x$ in $U$. We can assume that $e_1,\ldots,e_k$ are vertical and $e_{k+1},\ldots,e_{n-1}$ are horizontal w.r.t. $\pi$. Hence $\{b_i:=d\pi({e}_i) \vert k+1\leq i\leq n-1\} $ is a local orthonormal frame of $TL_B$. Then 
+\begin{eqnarray*}
+g_N((\grad^{L_B}u)^{h},e_i) =\pi^*g(\grad^{L_B}u,d\pi(e_i)) = \pi^*du(d\pi(e_i)) = dv(e_i)=g_N(\grad^{L_N}v,e_i),
+\end{eqnarray*}
+Hence $(\grad^{L_B}u)^h=\grad^{L_N}v$ and, since the submersion is Riemannian, $\vert\grad^{L_N} v\vert ^2 = \vert \grad^{L_B} u\vert^2$. Therefore, $\widetilde{W}^2=\frac{1}{c}+\vert\grad^{L_N} v\vert ^2 =\frac{1}{c}+ \vert \grad^{L_B}u\vert^2=W^2$.  And by construction, $\nu_{_{\widetilde{F}}}$ is horizontal.
+
+Secondly, we recall the submersion $\pi:=\pi|_{L_N}\times 1:N=(L_N\times_c \R)\rightarrow B=(L_B\times_c \R)$ and $K^{\h}=\tilde{K}$. % point out again that  the horizontal lift of $K$ is $\widetilde{K}$. 
+Moreover, for any $(p,t)\in L_B\times_c \R$, $\pi^{-1}(p,t)=\pi|_{L_N}^{-1}(p)\times\{t\}$.
+By our construction of the unit normal vector, the horizontal lift with respect to $\pi$ of the normal $\nu_{F}$ in $L_B\times_c\R$ is exactly the normal $\nu_{\widetilde{F}}$ in $L_N\times_c \R$. 
+
+By extending the basis $\{e_i\}_{i=1}^{n-1}$ of $TL_N$, we can now construct the local orthonormal frame $\{\bar{e}_i\}_{i=1}^{n}$  of $N$ with $\bar{e}_i=(e_i,0)$ for $1\leq i\leq n-1$ and $\bar{e}_{n}=\frac{1}{c}K$. 
+Clearly, $\{\bar{b}_i:=d\pi(\bar{e}_i) \vert k+1\leq i\leq n\}$ is a local orthonormal frame of TB. 
+%Now consider the vertical vector fields $e_i$, $1\leq i\leq k$, and the horizontal vector field $\nu_{\widetilde{F}}$. By definition 
+By construction, the vector fields $\bar{e}_i$, $1\leq i\leq k$, are tangent to the fibers of $\pi$, and the horizontal vector field $\nu_{\widetilde{F}}$ is normal to the fibers. Hence we get using formulas \eqref{connection_ONtensors}
+\[ g_{N} \big( \nabla_{\bar{e}_i}^{N} \nu_{{\widetilde{F}}},\bar{e}_i\big) = 
+g_{N}\big( \mathcal{H}\nabla_{\bar{e}_i}^{N} \nu_{\widetilde{F}},\bar{e}_i\big)+g_{N}\big( T_{\bar{e}_i}\nu_{\widetilde{F}},\bar{e}_i\big)=g_{N}\big( T_{\bar{e}_i}\nu_{\widetilde{F}},\bar{e}_i\big).
+\]
+and $H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}:=\sum_i^kg_{N}\big( \nabla_{\bar{e}_i}^{N} \nu_{{\widetilde{F}}},\bar{e}_i\big)$ is exactly the mean curvature  of the fibers in the direction of $\nu_{\widetilde{F}}$. 
+Moreover we have 
+\begin{eqnarray*}
+dF(b_i)&=&(b_i,du(b_i))=\bar{b}_i+b_i(u)\frac{K}{c},\quad i=k+1,\dots n-1,\\
+d\widetilde{F}({e}_i)&=&({e}_i,dv({e}_i))=\bar{e}_i+d(u\circ\pi)(e_i)\frac{\widetilde{K}}{c}=
+\begin{cases}\bar{e}_i,\ i=1,\dots k,\\
+\bar{e}_i+b_i(u)\frac{\widetilde{K}}{c}, \ i=k+1,\dots n-1.
+\end{cases}
+\end{eqnarray*}
+and the induced metrics 
+\begin{eqnarray}\label{metrics_immersionsB_N}
+\gamma_{ij}&=&g_{B}(dF(b_i),dF(b_j))=\delta_{ij}+b_i(u)b_j(u)\quad i=k+1,\dots n-1,\nonumber\\
+\bar{\gamma}_{ij}&=&g_{N}(dF(b_i),dF(b_j))=
+\begin{cases}\delta_{ij}, i=1,\dots k,\\
+\delta_{ij}+b_i(u)b_j(u)=\gamma_{ij},\quad i=k+1,\dots n-1.
+\end{cases}
+\end{eqnarray}
+By denoting respectively by $A_{\widetilde{F}}$ and $A_F$ the second fundamental forms of $\widetilde{F}$ and $F$ with associated mean curvature vectors $\vec{H}_{\widetilde{F}}$ and $\vec{H}_F$, we use equation \eqref{metrics_immersionsB_N} and Remark \ref{remark_submersions} to compute
+\begin{align*}
+& \vec{H}_{\widetilde{F}} = \sum_i^{n-1} \bar{\gamma}^{ij} A_{\widetilde{F}}(d\widetilde{F}(e_i),d\widetilde{F}(e_i))=
+\sum_i ^{n-1}\bar{\gamma}^{ij}g_{N}(\nabla^{N}_{d\widetilde{F}(e_i)}\nu_{\widetilde{F}},d\widetilde{F}(e_i))\nu_{\widetilde{F}}\\&=\sum_{i=1} ^kg_{N}(\nabla^{N}_{d\widetilde{F}(e_i)}\nu_{\widetilde{F}},d\widetilde{F}(e_i))\nu_{\widetilde{F}}+
+\sum_{i\geq k+1}^{n-1}\gamma^{ij} g_{N}(\nabla^{N}_{d\widetilde{F}(e_i)}\nu_{\widetilde{F}},d\widetilde{F}(e_i))\nu_{\widetilde{F}}\\& = H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}} +\sum_{i\geq k+1}^{n-1}\gamma_{ij} \pi^*g_{B}(\pi^*\nabla^{B}_{dF(v_i)}\nu_{F},dF(v_i))\nu_{F}^h\\
+&=H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}+\Big( \sum_{i\geq k+1}^{n-1}\gamma^{ij} g_{B}(\nabla^{B}_{dF(v_i)}\nu_{F},dF(v_i))\nu_{F}\Big)^{h}\\& =H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}+\vec{H}_{F}^{h}.
+\end{align*}
+
+That is to say,
+\begin{equation}\label{upanddown}
+\vec{H}_{\widetilde{F}} =H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}+\vec{H}_{F}^{h}.
+\end{equation}
+We recall that $H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}$ is constant along the fibers. 
+
+If $\tilde{K}^{\perp}=\vec{H}_{\widetilde{F}}$, then it is projectable, so that $K^{\perp}= H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{F}+\vec{H}_{F}$ holds. Conversely, if $K^{\perp}= H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{F}+\vec{H}_{F}$, then by lifting up and \eqref{upanddown}, $\tilde{K}^{\perp}=H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}+\vec{H}_{F}^{h}=\vec{H}_{\widetilde{F}}$.\\
+
+Next, we assume $K^{\perp}=\vec{H}_{F}$. By lifting up and \eqref{upanddown}, $\tilde{K}^{\perp}=\vec{H}_{F}^h=
+\vec{H}_{\widetilde{F}} -H_{\mathrm{fib}}^{\nu_{\widetilde{F}}} \nu_{\widetilde{F}}$. The converse is also straightforward. 
+\color{black}
+%Projecting and using the rigid soliton equation then directly shows our result. Note that the projection of the mean curvature of the fibers to the base only makes sense if it is constant.
+\end{proof}
+%\begin{theorem}\label{warped_generalization_submersion} 
+%Let $M$ be a semi-Riemannian manifold and $\rho:M\rightarrow\mathbb{R}^+$ a smooth function such that $M\times_{\rho}\mathbb{R}$ is a warped product with metric $g_M+\rho dt^2$ .
+%Let $\pi:(M,g_M)\rightarrow (B,g)$ be a semi-Riemannian submersion 
+%with constant mean curvature fibers. Then $\widetilde{F}:M\rightarrow M\times_{\rho}\mathbb{R}$ is a rigid translator with respect to the Killing vector field $\partial_t$ if and only if $F:B\rightarrow B\times_{\rho}\mathbb{R}$ satisfies the equation $\vec{H}_{F}=\partial_t^{\perp}+H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}\nu_F$.
+%\end{theorem}
+\begin{remark}\label{remark_submersion_PDE}
+\begin{itemize}\normalfont 
+\item[1)] Similarly to our result in \cite{LO}, the hypothesis of Theorem \ref{submersions_and_Rigid_sol} are satisfied when the submersion has totally geodesic fibers. In this case the horizontal lift of $\vec{H}_F$ is $\vec{H}_{\widetilde{F}}$ and $\widetilde{F}$ is a Rigid soliton if and only if $F$ is.
+\item[2)] If $\pi:(N,g_N)\rightarrow (B,g_B)$ is a Riemannian submersion with constant mean curvature fibers, then by Theorem \ref{submersions_and_Rigid_sol} and the proof of Proposition \ref{EDPproposition} $\widetilde{F}$ is a rigid soliton if and only if $u$ satisfies
+\begin{eqnarray}\label{PDE_rigid_submersion}
+\mathrm{div}\left(\frac{\nabla^B u}{W}\right)=\frac{1}{W}-\frac{1}{2Wc}g(\nabla^B c,\nabla^B u)-H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}.
+\end{eqnarray}
+\end{itemize}
+\begin{example}{The Grim Hyperplane} The projection $\pi:\R^{n+2}\to \R^2$, $n\geq 1$, $\pi(x_1,\ldots,x_{n+2})$ $=(x_{n+1},x_{n+2})$ is a Riemannnian submersion (with the Euclidean metrics) such that the fibers are totally geodesic. If we consider the Grim Reaper $F:\R\to\R^2$, we can  lift it up to $\R^{n+2}$, obtaining the Grim Hyperplane.
+\end{example}
+\end{remark}
+We will now turn our attention to a special case where equation \eqref{PDE_rigid_submersion} can be reduced to an ODE. For this purpose we will consider again a Riemannian submersion $\pi:(N,g_N)\rightarrow (B,g_B)$ with constant mean curvature fibers, where $N$ admits a non-vanishing basic Killing vector field $\widetilde{K}$  with integrable orthogonal distribution and where the base $B=L_B\times_c\mathbb{R}$ is 2 dimensional. Using the same notation as before, the submersion $\pi|_{L_N}: L_N\rightarrow L_B$ has also constant mean curvature fibers and the base of the submersion $\pi|_{L_N}: L_N\rightarrow L_B$ is now one dimensional. We can therefore assume that locally $L_B$ is an open interval in $\mathbb{R}$ with metric $\alpha(s)ds^2$, where $\alpha$ is a positive function. Note that in this case for each $x\in L_B$ the fiber $\pi|_{L_N}^{-1}(x)$ is an hypersurface in $L_N$ with globally defined unit normal $\sqrt{\alpha\circ\pi}\nabla \pi|_{L_N}$ and since the fibers are CMC there is a well-defined mean curvature function $h: L_B\rightarrow\mathbb{R}$, where $h(x)$ is the value of the mean curvature of $\pi|_{L_N}^{-1}(x)$ with respect to $\nabla \pi|_{L_N}$.    %An example of this situation is the case where a Lie group acts by isometries on the manifold (actually on the leaves of the orthogonal integrable distribution since K is basic) whose orbits are codimension 2 submanifolds
+
+We give the following useful lemma. 
+
+%\color{blue}
+%\begin{enumerate}
+%\item In the following lemma, the fibers are $\pi^{-1}(s)$, $s\in I$. Since $\dim I=1$, $\dim \pi^{-1}(s)=\dim M-1$. Now, it makes sense to say \textit{with constant mean curvature fibers}.
+
+%\item As in \cite[Proposition 4.1]{LO}, we can reparametrize the base manifold to obtain $\alpha=1$ everywhere. Actually, we need that, because $\nabla\pi$ is a normal vector field to the fibers. If $\alpha\neq 1$ at some point, then $\nabla\pi$ is not unit, so that the formula $\mathrm{div}(\nabla\pi)=h\circ\pi$ is not true anymore. 
+%\end{enumerate}
+%\color{black}
+
+\begin{lemma} \label{lemilla}
+Let $I$ be an open interval and $\alpha\in C^{\infty}(I)$ a positive function. Let $\pi:(M,g_{_M})\rightarrow(I,g_I:=\alpha(s)ds^2)$ be a Riemannian submersion with constant mean curvature fibers and $h:I\rightarrow\mathbb{R}$ the mean curvature function with respect to $\sqrt{\alpha\circ\pi\,\grad\pi}$.  If $f\in C^2(I)$ and $u=f\circ\pi\in C^2(M)$, then $h:I\rightarrow\R$ is smooth and we have
+%Given  $u\in C^2(M)$ which is constant along the fibers of $\pi$, let define $f:I\rightarrow \mathbb{R}$ as $u=f\circ\pi$. 
+\begin{enumerate}
+%\item  $\mathrm{div}(\grad\pi)=\MA{\sqrt{\alpha\circ\pi}}\,h\circ\pi$.
+\item $\grad^M u = f'(\pi)\grad^M \pi$,\quad $\vert \grad^M u\vert_{g_M}^2=  \frac{1}{\alpha\circ\pi} f'(\pi)^2$,
+%\quad %$\mathrm{div}(\grad u) =  \MA{\left[ \frac{f''}{\alpha} + f'\left(\frac{h}{\sqrt{\alpha}}-\frac{\alpha'}{2\alpha^2}\right)\right]\circ\pi. }$.
+%\item If $W=+\sqrt{\big(-1+ f'(\pi)^2\big)}$, then $\grad W =\displaystyle \frac{\ep  f'(\pi)f''(\pi)}{W}\grad\pi.$ 
+\item Given $W\in C^1(I)$, $W>0$, 
+$\mathrm{div}\left(\frac{\nabla f}{W}\right)=\frac{f''}{\alpha W} - \frac{f'\alpha'}{2 \alpha^2 W} - \frac{f'W'}{\alpha W^2}.$
+\end{enumerate}
+\end{lemma}
+%\Miguel{Note: We can reduce the regularity of $f$ to just $f\in C^2(I)$}. 
+\begin{proof}
+The proof is similar to the one in \cite{LO} bearing in mind that the metric on $I$ is not the Euclidean metric anymore. Note that $\pi$ is constant along the fibers $\pi^{-1}(s)$, $s\in I$. As $\pi$ is a Riemannian submersion, then $(\partial_s)^h=\grad\pi$, which implies $g(\nabla\pi,\nabla\pi)=\frac{1}{\alpha\circ\pi}$. Then, we can construct a local orthonormal frame $\{e_1,\dots e_n\}$ such that$e_n=\sqrt{\alpha\circ\pi}\,\nabla\pi$,  and $e_i(\alpha\circ\pi)=0$ for any $i=1,\ldots,n-1$. 
+%Then, 
+%\MA{\begin{align*}
+%& \textrm{div}(\nabla\pi)=\sum_{i=1}^ng(\nabla_{e_i}\nabla\pi,e_i)
+%=\sum^{n}_{i=1}g\left(\nabla_{e_i}\big(\MA{\frac{1}{\sqrt{\alpha\circ\pi}}}\, e_n\big),e_i\right) \\
+%&= \sum^{n-1}_{i=1} \MA{\frac{1}{\sqrt{\alpha\circ\pi}}} g\left( \nabla_{e_i}e_n,e_i\right)+e_n\left(\MA{\frac{1}{\sqrt{\alpha\circ\pi}}}\right) \\
+%& = (\MA{\frac{h}{\sqrt{\alpha}})}\circ\pi +\MA{\sqrt{\alpha\circ\pi}\,\nabla\pi \left(\frac{1}{\sqrt{\alpha\circ\pi}}\right)}
+%=(\MA{\frac{h}{\sqrt{\alpha}})}\circ\pi+\MA{\sqrt{\alpha\circ\pi}}\,g\left(\nabla\pi,\nabla \left(\frac{1}{\sqrt{\alpha\circ\pi}}\right)\right) \\
+%& =(\MA{\frac{h}{\sqrt{\alpha}})}\circ\pi+ \MA{\sqrt{\alpha\circ\pi}\frac{g\left(\nabla\pi,\alpha'(\pi)\nabla\pi\right) }{-2(\alpha\circ\pi)^{\frac{3}{2}}}}
+%= (\MA{\frac{h}{\sqrt{\alpha}})\circ\pi- \frac{\alpha'(\pi) /\alpha(\pi) }{2\alpha(\pi)} }\\
+%& \MA{=\left(\frac{h}{\sqrt{\alpha}}-\frac{\alpha'}{2\alpha^2}\right)\circ\pi.}
+%\end{align*}}
+%\[\textrm{div}(\nabla\pi)=\sum_{i=1}^ng(\nabla_{e_i}\nabla\pi,e_i)=\sum^{n-1}_{i=1}
+%g(\nabla_{e_i}\nabla\pi,e_i)=\frac{1}{\sqrt{\alpha}} h.\]
+\color{black}
+Further, given a point $p\in M$,
+\[g_M(\nabla^M u,X)_p=(du)_pX = d(f\circ\pi)_pX = (df)_{\pi(p)}\Big( (d\pi)_pX\Big) =f'(\pi(p)) g_M(\nabla^M \pi,X)_p.\] 
+This shows $\nabla^M u=f'(\pi)\nabla^M\pi$ and consequently $\vert \grad^M u\vert_{g_M}^2=  \frac{1}{\alpha} f'(\pi)^2$.
+%Hence
+%\begin{align*}
+%& \mathrm{div}(\nabla u) = \mathrm{div}(f'(\pi)\nabla\pi) = \nabla\pi( f'\circ\pi) + f'(\pi) \mathrm{div}(\nabla\pi) \\
+%& = g(\nabla(f'\circ\pi),\nabla\pi) + f'(\pi) \mathrm{div}(\nabla\pi) 
+%=\MA{ g(f''(\pi)\nabla\pi,\nabla\pi) +f'(\pi)\left(\frac{h}{\sqrt{\alpha}}-\frac{\alpha'}{2\alpha^2}\right)\circ\pi }\\
+%& = \MA{\left[ \frac{f''}{\alpha} + f'\left(\frac{h}{\sqrt{\alpha}}-\frac{\alpha'}{2\alpha^2}\right)\right]\circ\pi. }
+%\end{align*}
+%\MA{Finally
+%\begin{eqnarray*}
+%\nabla(W^2)=\nabla\left(\frac{1}{c(\pi)}+\frac{1}{\alpha(\pi)}f'(\pi)^2\right)=\left[-\frac{c'}{c^2}-\frac{\alpha'}{\alpha^2}f'^2+\frac{2}{\alpha}f'f"\right]\circ\pi
+%\end{eqnarray*}
+%which yields $\nabla W=\frac{1}{2W}\left[-\frac{c'}{c^2}-\frac{\alpha'}{\alpha^2}f'^2+\frac{2}{\alpha}f'f"\right]\circ\pi$}
+%\color{black}
+ %Moreover since $\pi$ is a Riemannian submersion, we get
+%$g(\nabla\pi,\nabla\pi)=\frac{1}{\alpha}$, and hence $\vert \grad u\vert_g^2= \frac{1}{\alpha} f'(\pi)^2$\\
+%And finally $$\textrm{div} (\nabla u)=\textrm{div}(f'(\pi)\nabla\pi)=g(\nabla(f'\circ\pi),\nabla\pi)+f'(\pi)\textrm{div}(\nabla\pi)= \frac{1}{\alpha}f''(\pi)+\frac{1}{\sqrt{\alpha}}f'(\pi)h(\pi).$$ 
+\\
+Note that $g_I(\nabla f,\frac{\partial}{\partial s})=f'=\frac{f'}{\alpha}g_I(\frac{\partial}{\partial s},\frac{\partial}{\partial s}),$ hence $\nabla f=\frac{f'}{\alpha}\frac{\partial}{\partial s}$. Denote by $\langle\cdot,\cdot\rangle$ the standard Euclidean metric on the interval. Now by definition 
+\begin{align*}
+& \textrm{div}\left(\frac{\nabla f}{W}\right) = g_I\left(\nabla^{g_I}_{\frac{\partial}{\sqrt{\alpha}\partial s}}\left(\frac{f'}{\alpha W}\frac{\partial}{\partial s}\right),\frac{\partial}{\sqrt{\alpha}\partial s}\right)  \\
+&= g_I\left(\nabla^{g_I}_{\frac{\partial_s}{\sqrt{\alpha}}}\left(\frac{f'}{\sqrt{\alpha}\, W}\frac{\partial_s}{\sqrt{\alpha}}\right),\frac{\partial_s}{\sqrt{\alpha}}\right)\\
+& = \frac{1}{\sqrt{\alpha}}\left( \frac{f'}{\sqrt{\alpha}\, W}  \right)^{\prime} 
+ g_I\left({\frac{\partial_s}{\sqrt{\alpha}}},\frac{\partial_s}{\sqrt{\alpha}}\right)
++ \frac{f'}{\sqrt{\alpha}\,W} 
+g_I\left( \nabla^{g_I}_{\frac{\partial_s}{\sqrt{\alpha}}}\left(\frac{\partial_s}{\sqrt{\alpha}}\right),
+\frac{\partial_s}{\sqrt{\alpha}}\right) \\
+& =  \frac{1}{\sqrt{\alpha}}\left( \frac{f'}{\sqrt{\alpha}\, W}  \right)^{\prime}  + 
+ \frac{f'}{\sqrt{\alpha}\,W} \, \frac{1}{2\sqrt{\alpha}} \partial_s \left( g_I\left(\frac{\partial_s}{\sqrt{\alpha}},
+\frac{\partial_s}{\sqrt{\alpha}}\right)\right) 
+ =  \frac{1}{\sqrt{\alpha}}\left( \frac{f'}{\sqrt{\alpha}\, W}  \right)^{\prime}   \\
+& =
+ g_I\left(\nabla^{g_I}_{\frac{\partial}{\sqrt{\alpha}\partial s}}\left(\frac{f'}{\sqrt{\alpha}\, W}\frac{\partial}{\sqrt{\alpha}\partial s}\right),\frac{\partial}{\sqrt{\alpha}\partial s}\right)
+= \frac{f''}{\alpha W} - \frac{f'\alpha'}{2 \alpha^2 W} - \frac{f'W'}{\alpha W^2}.
+\end{align*}
+%\Miguel{Note: We don't need to use $\produ{,}$. This alternative proof shows that the formula is correct.}
+\end{proof}
+
+
+Let $(L,g_L)$ be a Riemannian manifold, $\dim L\geq 2$, $I$ an open interval, $\alpha\in C^{\infty}(I)$ a positive function. On $I$, we consider the non-standard metric $g_I=\alpha(s)ds^2$. Assume a Riemannian submersion $\pi:(L,g_L)\rightarrow (I,g_I)$ with constant mean curvature fibers. Note that a unit normal to the fibers $\pi^{-1}(s)$, $s\in I$, is the vector field $\xi:=-\sqrt{\alpha\circ\pi}\nabla \pi$. Denote by $h:I\to\R$ the function such that $h\circ\pi$ is the mean curvature of the fibers w.r.t. $\xi$. Now, we construct a new Riemannian submersion, which is just an extension, namely $\pi\times 1:N=L\times_{\tilde{c}}\R \to B=I\times_c\R$, $\pi\times 1(p,t)=(\pi(p),t)$, 
+where $c\in C^{\infty}(I)$ is a positive function, and $\tilde{c}=c\circ\pi$. The fibers of $\pi$ and $\pi\times 1$ can easily be identified. Denote the corresponding warped metrics by $g_N=g_L+\tilde{c}\,dt^2$ and $g_B=g_I+c\, dt^2$. The vector field $\tilde{K}=\dt\in\mathfrak{X}(N)$ is a Killing vector field, whose norm is $g_N(\tilde{K},\tilde{K})(p,t)=\tilde{c}(p)=(c\circ \pi)(p)$. Consider $\Omega\subset I$ an open interval, and also $f\in C^2(\Omega)$, $u:=f\circ\pi\in C^2(\pi^{-1}(\Omega)),$ and construct now the Killing graph w.r.t. $\tilde{K}$, $\tilde{F}:\pi^{-1}(\Omega)\rightarrow N$, $\tilde{N}(x)=(x,u(x))$. 
+
+
+\begin{theorem}\label{submersions_and_Rigid_sol}
+Under the previous notations, $\widetilde{F}$ is a rigid translator if and only if $f$ is a solution to the ODE
+\begin{eqnarray}\label{ODE}
+%f'' = \left(1+c(f')^2\right)\left( 1+hf'-\frac{c'f'\big(2+c(f')^2\big)}{2c(1+c(f')^2)}\right). TO\, CORRECT
+%f''(s)=\big(1 - f'(s)^2\big)\big(1-f'(s)h(s)\big).
+f''=\left(\alpha+c(f')^2\right)\left( 1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}}\right) 
++\frac{f'}{2}\left(\log\left(\frac{\alpha}{c}\right)\right)'.
+\end{eqnarray}
+\end{theorem}
+\begin{proof}  It is a well-known fact that if $H^N$ is the mean curvature of a submanifold $(Z,g_Z)$ with respect to a unit normal vector $N=\sum_ia_i\xi_i$, where $\{\xi_i\}$ are unit normal vectors to the submanifold  and $a_i$ are functions on the submanifold, then $H^N=\sum_i a_i H^{\xi_i}$. 
+
+Note that $\nabla u$ is the gradient of $u$ in $L$, but we are going to identify it with $(\nabla u_p,0)\in T_{(p,t)}N$, for any $(p,t)\in\pi^{-1}(\Omega)\times\R\subset N$. We will make a similar identification $\nabla\pi\equiv(\nabla\pi,0)$. 
+
+
+Recall now that the normal vector $\nu_{\widetilde{F}}$ is an horizontal vector field in $N$ and hence normal to the fibers. We can therefore compute the mean curvature $H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}$ of the fibers $\pi^{-1}(s)$, $s\in B$ in the direction of the normal vector. We recall that 
+\begin{align*}\nu_{\widetilde{F}}(p,t)=&
+\frac{1}{\sqrt{\frac{1}{\widetilde{c}(p)}+\vert(\nabla u_p,0)\vert^2}}
+\left(\frac{1}{\widetilde{c}(p)}\widetilde{K}_{(p,t)}-(\nabla u_p,0)\right) \\
+=&\frac{1}{\sqrt{\frac{1}{\tilde{c}(p)}+\frac{1}{(\alpha\circ\pi)(p)}(f'\circ\pi)^2(p)}}
+\left(\frac{1}{\tilde{c}(p)}\widetilde{K}_{(p,t)}-\big((f'\circ\pi)(p)\nabla\pi_p0\big)\right). 
+\end{align*}
+Using the previous computation, and by the fact that the mean curvature vanishes in the direction of $\widetilde{K}$, since the leaves of $D_{\widetilde{K}^{\perp}}$ are totally geodesic, we get
+\[H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}(p)=\frac{
+1 }{\sqrt{\frac{1}{\tilde{c}(p)}+\frac{1}{(\alpha\circ\pi)(p)}(f'\circ\pi)(p)}}\,
+\frac{ (f'\circ\pi)(p)}{\sqrt{(\alpha\circ\pi)(p)}}H_{\mathrm{fib}}^{\xi}(p), \quad x\in\pi^{-1}(\Omega).\]
+Since the fibers have constant mean curvature, it is clear that $H_{\mathrm{fib}}^{\xi}=h\circ\pi$. Now, by Remark \ref{remark_submersion_PDE} and Lemma \ref{lemilla}, 
+and since the base is one-dimensional, $\widetilde{F}$ is a translating soliton if, and only if, 
+\begin{eqnarray}\label{h_perturbed_eq_onedim}
+\frac{f''}{\alpha \sqrt{\frac{1}{c}+\frac{1}{\alpha}(f')^2}} 
+- \frac{f'\alpha'}{2 \alpha^2 \sqrt{\frac{1}{c}+\frac{1}{\alpha}(f')^2}} - \frac{f'(-\frac{c'}{c^2}-\frac{\alpha'}{\alpha^2}(f')^2+\frac{2}{\alpha}f'f'')}
+{2\alpha (\frac{1}{c}+\frac{1}{\alpha}(f')^2)^{3/2}}\nonumber\\
+=\frac{1}{ \sqrt{\frac{1}{c}+\frac{1}{\alpha}(f')^2}} 
+-\frac{g_I(\nabla c,\nabla f)}{ 2c\sqrt{\frac{1}{c}+\frac{1}{\alpha}(f')^2}} 
+-H_{\mathrm{fib}}^{\nu_{\widetilde{F}}}.
+\end{eqnarray}
+Using the fact that \[g_I(\nabla c,\nabla f)=g_I\left(\frac{c'}{\alpha}\frac{\partial}{\partial s},\frac{f'}{\alpha}\frac{\partial}{\partial s}\right)=\frac{c'f'}{\alpha},\]  
+equation \eqref{h_perturbed_eq_onedim} becomes 
+\[
+\frac{f''}{\alpha}-\frac{f'\alpha'}{2\alpha^2}-\frac{f'(-\frac{c'}{c^2}-\frac{\alpha'}{\alpha^2}(f')^2+\frac{2}{\alpha}f'f'')}{2\alpha(\frac{1}{c}+\frac{1}{\alpha}(f')^2)}=1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}},
+\]
+which is equivalent to
+\[
+\frac{2f''(\frac{1}{c}+\frac{1}{\alpha}(f')^2)-\frac{f'\alpha'}{\alpha}(\frac{1}{c}+\frac{1}{\alpha}(f')^2)-f'(-\frac{c'}{c^2}-\frac{\alpha'}{\alpha^2}f'^2+\frac{2}{\alpha}f'f")}{2\alpha(\frac{1}{c}+\frac{1}{\alpha}(f')^2)}=1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}},
+\]
+and now
+\[
+\frac{2f''\frac{1}{c}-\frac{f'\alpha'}{\alpha c}+\frac{f'c'}{c^2}}{2\alpha(\frac{1}{c}+\frac{1}{\alpha}(f')^2)}=1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}},
+\]
+so that $2\frac{f''}{c}=2\alpha\Big(\frac{1}{c}+\frac{(f')^2}{\alpha}\Big)\Big( 1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}}\Big) +\frac{f'}{c}\Big( \frac{\alpha'}{\alpha}-\frac{c'}{c}\Big)$, 
+and then
+\[
+f''=\left(\alpha+c(f')^2\right)\left( 1-\frac{c'f'}{ 2c\alpha} +\frac{f'h}{\sqrt{\alpha}}\right) 
++\frac{f'}{2}\left(\log\left(\frac{\alpha}{c}\right)\right)'.
+\]
+\end{proof}
+\begin{remark}
+Note that if $\alpha$ and $c$ are just the identity functions equation \eqref{EDP} reduces to the usual mean curvature flow equation in  the product $(M\times\mathbb{R},g+dt^2)$ and equation \eqref{h_perturbed_eq_onedim} to the ODE we found in \cite{LO}.
+\end{remark}
+
+
+\section{An application: the Hyperbolic Space}\label{An application: the Hyperbolic Space}
+In this section we develop an example in the hyperbolic space. % together with its translation Killing vector field. 
+We will use for this purpose the upper half-space model, $n\geq 2$, with its usual metric 
+\[\H{n}=\left\{ x=(x_1,\ldots,x_n)\in\R^n : x_1>0\right\}, \quad g=\frac{1}{x_1^2}\langle,\rangle,
+\]
+where $\langle,\rangle$ is the standard flat metric of the Euclidean Space. A globally defined frame is $\BB=\big(\partial_i : i=1,\ldots,n\big)$, and a globally defined orthonormal frame is $\tilde{\BB} = \big( E_i=x_1\partial_i : i=1,\ldots,n\big)$. 
+We consider the translation vector field $K=\partial_{n+1}$ on $\H{n+1}$. It is not unit as $g(K,K)=1/x_1^2$. Moreover, if $\mathcal{L}$ is the Lie derivative, we have for each $i,j\in\{1,\ldots,n+1\}$, $i\neq j$, 
+\begin{align*}
+&\L_{\partial_{n+1}}(\partial_i,\partial_i) = \partial_{n+1}(g(\partial_i,\partial_i)) - 2g([\partial_{n+1},\partial_i],\partial_i) = \partial_{n+1}( 1/x_1^2 ) =0, \\
+&\L_{\partial_{n+1}}g(\partial_i,\partial_j) = \partial_{n+1}(g(\partial_i,\partial_j)) - g([\partial_{n+1},\partial_i],\partial_j) 
+-g(\partial_i,[\partial_{n+1},\partial_j])=0.
+\end{align*}
+Hence $K$ is a globally defined Killing vector field. 
+Note that the flow of $K=\partial_{n+1}$ is just
+\[ \phi : \R\times \H{n+1}\rightarrow \H{n+1}, \quad \phi(t,x)=(x_1,\ldots,x_n,x_{n+1}+t).
+\]
+and the integral curves are obviously complete.
+Indeed, if we put $\phi_x(t)=\phi(t,x)$, then
+\[ \left.\frac{d}{dt}\right\vert_{t=t_0} \phi_x(t) =  
+\left.\frac{d}{dt}\right\vert_{t=t_0} (x_1,\ldots,x_n,x_{n+1}+t) = 
+\left. \partial_{n+1} \right\vert_{\phi(x,t_0)}.
+\]
+The orbits of $K$ are known as \textit{horocircles}. The distribution orthogonal to $K$ is spanned by the vectors $\{ E_i\}_{i=1}^n$ and, hence, it is integrable. The leaves are therefore copies of $\mathbb{H}^n$. One of the totally geodesic embeddings is given by
+\[ \chi : \H{n} \rightarrow \H{n+1}, \quad \chi(x)=(x,0).
+\]
+
+We can therefore identify $d\chi(\partial_i) =\partial_i$, $i=1,\ldots,n$. In general, if $X\in T\H{n}$, we will write $d\chi(X)=(X,0)=X^L\in T\H{n+1}$. Given any function $f$ defined on $\Omega$, we will denote 
+\[ f_i = E_i(f) =x_1\frac{\partial f}{\partial x_i}.\]
+
+Given a function $u\in C^2(\Omega)$, with $\Omega\subset \H{n}$ open and connected, we want to study whether the Killing graph 
+\[\widetilde{F}:\Omega \rightarrow \H{n+1}, F(p)=\phi(u(p),p)=\phi_{u(p)}(p).\]
+associated with the flow $\phi$ and the function $u$ can be a Rigid Translator. 
+
+For this purpose we note that the  Lie group $(\R^{n},+)$ acts by isometries (translations) on $\mathbb{H}^{n+1}$ as $\R^{n}\times\mathbb{H}^{n+1}\rightarrow\mathbb{H}^{n+1}$, by $(v=(v_1,\ldots,v_{n})^t,p=(p_1,\ldots,p_{n+1})^t)\to (p_1,p_2+v_1,\ldots,p_{n+1}+v_{n})^t$. The orbits are known as \textit{$n$-horospheres}. Needless to say, each $k$-dimensional linear subspace in $\R^n$ provides a $k$-dimensional horosphere  ($k$-horosphere for short.) The leaves of $\mathcal{D}^{\perp}_K$ are totally geodesic $\H{n}$. Then,   by restricting the action on them, we obtain  a Riemannian submersion $\pi: \mathbb{H}^{n+1}\rightarrow \mathbb{H}^2$, $\pi(p_1,\ldots,p_{n+1})=(p_1,p_{n+1})$ with constant mean curvature fibers $h=0$. By Theorem \ref{submersions_and_Rigid_sol} we can therefore reduce our study to the study of solutions of the ODE \eqref{ODE}  on $\mathbb{H}^1$, which is the purpose of the rest of the section.
+\begin{remark}
+Note that on $\mathbb{H}^n$ we have from equation \eqref{W}, 
+$c=g(\partial_{n+1},\partial_{n+1})=\frac{1}{x_1^2}$,  and 
+$W=\sqrt{ x_1^2+\vert \nabla u\vert^2}.$
+Since $\nabla c= \beta \partial_1$, for some function $\beta$, then 
+$\frac{\beta}{x_1^2} = g(\nabla c,\partial_1) = \partial_1\left(\frac{1}{x_1^2}\right) = \frac{-2}{x_1^3}$
+and consequently  $\nabla c= \frac{-2}{x_1}\partial_1$.
+We compute now
+\[\frac{1}{W}-\frac{1}{2Wc}g(\nabla c,\nabla u) = \frac1W + \frac{x_1}{W}g(\partial_1,\nabla u) = \frac{1+x_1u_1}{W}.
+\]
+By Proposition \ref{EDPproposition}, the Killing graph $F$ is a Rigid Translator if and only  if $u$ is a solution of the PDE
+\begin{equation} \label{aleluya} 
+\mathrm{div}_{_{\H{n}}}\left(\frac{\nabla u}{\WW}\right) = \frac{1+x_1u_1}{\WW}.
+\end{equation}
+\end{remark}
+Given an interval $I\subset\R^+$ and a smooth function $f:I\rightarrow\R$, we consider the curve 
+\[ F:I\rightarrow \H{2}, \ F(s)=(s,f(s)).\]
+We point out that the metric on $I=\H{1}=(0,+\infty)$ is given by $g_I=\alpha(s)ds^2=\frac{1}{s^2}ds^2$.  And by our previous considerations $c=\frac{1}{s^2}$. Therefore ODE \eqref{ODE} corresponding to a rigid soliton on $\mathbb{H}^n$ is given by
+\begin{eqnarray}\label{ODE_hyperbolic}
+f''=(\frac{1}{s^2}+\frac{1}{s^2}(f')^2)(1+sf'+f'hs)+\frac{f'}{2}(\log(1))'=\frac{1}{s^2}(1+(f')^2)(1+sf')
+\end{eqnarray}
+
+Since $s\in I\subset(0,+\infty)$, we can set $t=1/s\in(0,+\infty)$. We make the following transformation:
+\[ v(t) = -\int f'(1/t)dt. 
+\]
+Clearly, $v'(t)=-f'(1/t)$. Therefore % (\textit{we meet our old friend!})
+\begin{align*} 
+v''(t) = & \frac{f''(1/t)}{t^2} = 
+\frac{1}{t^ 2}\frac{ \Big( 1+f'(1/t)^2\Big)\Big( 1+\frac{1}{t}f'(1/t)\Big)}{ \frac{1}{t^2} } 
+\end{align*}
+and finally
+\begin{equation}\label{rot} v''(t) = \Big( 1+v'(t)^2\Big) \Big ( 1 - \frac{v'(t)}{t}\Big).
+\end{equation}
+Needless to say, for each solution $v$ to this equation, we recover a solution to  \eqref{ODE_hyperbolic} by 
+\[ f(t) = -\int v'(1/t)dt.\]
+All solutions to \eqref{rot} are described in \cite{CSS}. Indeed, any local solution $v$ can be extended at least to  $v:[s_0,+\infty)\rightarrow\R$, for some $s_0\geq 0$, being $v\in C[s_0,+\infty)\cap C^{\infty}(s_0,\infty)$. %Moreover, when $s_0=0$, for each $b\in\R$, there is a unique solution $\hat{v}:[0,\infty)\rightarrow\R$ such that $\hat{v}'(0)=0$ and $\hat{v}(s_0)=b$. 
+All of them behave at infinity as 
+\begin{equation}\label{vatinfinity}
+v(s)\sim \frac{s^2}{2} - \log(s) + O(s^{-1}).
+\end{equation}
+Coming back, each solution to \eqref{ODE_hyperbolic} is of the form $f:(0,t_0)\rightarrow\R$,  $t_0\leq +\infty$, such that $u'(t)=-v'(1/t)$, for any $t\in (0,t_0)$. In addition, 
+\begin{enumerate}
+\item $\lim_{t\to 0} u'(t)=- \lim_{t\to 0} v'(1/t) = -\lim_{s\to +\infty} v'(s) = -\infty$. 
+\item $\lim_{t\to 0^+} t u'(t) = \lim_{t\to 0^+}\frac{u'(t)}{1/t} = \lim_{s\to +\infty} \frac{v'(s)}{-s} = \lim_{s\to +\infty} \frac{s-1/s+O(s^{-2})}{-s}$ $= -1.$
+\end{enumerate}
+
+Let us show that 
+\[ \lim_{t\to 0} u(t) = +\infty.\] 
+We choose $t_o>0$ but close to zero. For each $t\in (0,t_o)$, we know
+\[ u(t) - u(t_o)=\int_{t_o}^t u'(x)dx = - \int_{t_o}^t v'(1/x)dx = \int_{1/t_o}^{1/t} \frac{v'(s)}{s^2}ds.
+\]
+By \eqref{vatinfinity}, $v'(s)/s^2 \sim 1/s - 1/s^3+O(s^{-4})$ when $s$ tends to infinity. Therefore, for a suitable contant $A\in\R$, 
+\begin{align*}
+& \lim_{t\to 0^{+}} u(t)-u(t_o) = \lim_{r\to +\infty} \int_{1/t_o}^r \frac{v'(s)}{s^2}ds 
+=  \lim_{r\to +\infty} \int_{1/t_o}^r \left(\frac1s -\frac{1}{s^3}+O(s^{-4})\right) ds\\
+& = \lim_{r\to +\infty} \left( \ln(r) +\frac{1}{2r^2}+O(r^{-3})+A\right)  = +\infty. 
+\end{align*}
+
+\color{black}
+We need to study two cases. \par 
+\noindent\underline{Case 1} For each $b\in\R$, there exists a $C^{\infty}$, unique solution to \eqref{rot}   $\hat{v}:[0,+\infty)\rightarrow\R$ such that $\hat{v}'(0)=0$ and $\hat{v}(0)=b$. In \cite{CSS}, this solution gives rise to the so-called either \textit{Translating Paraboloid} or \textit{Translating Bowl} in $\R^3$. Given $t_0>0$ and $b_0$, we define $\hat{u}:(0,\infty)\rightarrow\R$, $\hat{u}(t)=b_0-\int^t_{t_0}\hat{v}'(1/x)dx$. Also, 
+\[ \hat{v}''(0)=\lim_{s\to 0}\hat{v}''(s) = 
+\lim_{s\to 0}\big(1+\hat{v}'(s)^2)\big)\Big(1-\frac{\hat{v}'(s)}{s}\Big) 
+= 1-  \lim_{s\to 0} \frac{\hat{v}'(s)}{s} = 1-\lim_{s\to 0} \hat{v}'(s),
+\]
+\[ \hat{v}''(0)=1/2=\lim_{s\to 0}\frac{\hat{v}'(s)}{s}.\]
+In addition, by \eqref{rot}, 
+\[ \hat{v}'''(s) = 2\hat{v}'(s)\hat{v}''(s)\Big(1-\frac{\hat{v}'(s)}{s}\Big) - \big(1+\hat{v}'(s)^2\big) \frac{\hat{v}''(s)s-\hat{v}'(s)}{s^2}.
+\]
+By taking limits, 
+\begin{align*} & \hat{v}'''(0)=\lim_{s\to 0} \hat{v}'''(s) = \lim_{s\to 0} \frac{\hat{v}'(s)-\hat{v}''(s)s}{s^2} 
+= \lim_{s\to 0} \frac{\hat{v}''(s)- \hat{v}'''(s)s-\hat{v}''(s)}{2s}
+\\
+& = \lim_{s\to 0} \frac{-\hat{v}'''(s)}{2} = 0.
+\end{align*}
+So, in a small interval close to zero, 
+\[ \hat{v}'(s) = \frac{s}{2} + o(s^3).\]
+Since $u'(t)=-\hat{v}(1/t)$, the behaviour at infinity of $\hat{u}'$ is
+\[ \hat{u}'(t) \sim \frac{-1}{2t}+ O(t^{-3}).
+\]
+This implies the behaviour of $\hat{u}$ at infinity:
+\[ \hat{u}(t) \sim \frac{-\log(t)}{2} + O(t^{-2}).
+\]
+\color{black} 
+\par 
+\noindent\underline{Case 2} All other solutions to \eqref{rot} give rise to the  so-called either \textit{Wing-like} or \textit{Translating Catenoid}. This is so because for each solution, there is another one that both together give rise to an analytic curve in $\R^2$, like a double graph. 
+
+
+We return to \eqref{HGrimReaper}. Suppose that we can regard $u$ as the inverse of a function $h$, defined on small suitable intervals. We put $t=h(x)$, so that $u\circ h=Id$. Taking derivatives, we obtain
+\[ u'(t) = \frac{1}{h'(x)}, \quad u''(t) = \frac{-h''(x)}{h'(x)^3}.
+\]
+Then, \eqref{HGrimReaper} becomes
+\[ \frac{-h''(s)}{h'(x)^3} = \frac{
+\left(1+\frac{1}{h'(x)^2} \right)  \left( 1+h(x)\frac{1}{h'(x)}\right) }{h(x)^2}
+\]
+And manipulating it a little, 
+\begin{equation}
+\label{transformed} h''(x) = -\frac{\big(1+h'(x)^2\big)\big(h(x)+h'(x)\big)}{h(x)^2}.
+\end{equation}
+We consider now the following initial conditions: 
+\[  x_o\in \R, \quad h'(x_o)=0, \quad h(x_o)=t_o>0.
+\]
+According to \eqref{transformed}, $h''(x_o)=-1/t_o<0$. This means that the solution $h$  is contained below the tangent line at $x_o$ on a small interval $(x_o-\ep,x_o+\ep)$. Also, since the expression of \eqref{transformed} is so simple, any solution will by analytic. For some small $\delta>0$, there exist $u_{\pm}:(t_o-\delta,t_o]\rightarrow\R$ such that $h\circ u_{\pm}=Id$ (the inverse functions on the right and on the left intevals.) Clearly, $u_{\pm}(t_o)=x_o$. We are saying that around $(t_o,x_o)$, the union of the graphs of $u_{\pm}$ provide an analytic curve. We compute now $v_{\pm}:(1/t_o,1/(t_o-\delta)\rightarrow\R$, $v_{\pm}(t)=-\int u'(1/y)dy$. We now they are solutions to \eqref{rot}, and can be extended to 
+$v_{\pm}:(1/t_o,+\infty)\rightarrow\R$. This means that $u_{\pm}$ can also be extended to $u_{\pm}:(0,1/t_o]\rightarrow\R$. 
+\begin{theorem} Let $F$ be an unextandable Rigid Translator in $\H{2}$ in the direction of $\partial_{2}$. Then, $F$  is either:
+\begin{enumerate}
+\item An entire graph $F:(0,\infty)\rightarrow\mathbb{H}^2$, $F(t)=(t,u(t))$, such that $u$ is a solution to \eqref{HGrimReaper}. Moreover, $\lim_{t\to 0}u(t)=+\infty$, $\lim_{t\to 0} u'(t)=-\infty$, $\lim_{t\to 0} t\,u'(t) = -1$, and at infinity $u(t) \sim \frac{-\log(t)}{2} + O(t^{-2})$.
+\item An analytic curve which is the union of two graphs, $F_i:(0,t_o]\rightarrow\mathbb{H}^2$, $F_i(t)=(t,u_i(t))$, $i=1,2$, such that $u_1(t_o)=u_2(t_o)$, $\lim_{t\to t_o}u_i'(t)=\pm \infty$. Both $u_i$ are solutions to \eqref{HGrimReaper}. 
+\end{enumerate}
+\end{theorem}
+
+
+\subsection{The case of $\mathbb{H}^{n+1}$, $n\geq 2$}
+
+We are going to investigate some particular cases of \eqref{aleluya}. Firstly, we assume that function $u$ depends  on one variable only, namely 
+\begin{gather*} u:I\subset\R^{+}\rightarrow\R, \ F:\Omega=I\times\R^{n-1}\subset\mathbb{H}^{n} \rightarrow\mathbb{H}^{n+1}, \\ 
+F(x_1,\ldots,x_{n})=(x_1,\ldots,x_{n},u(x_1)).
+\end{gather*}
+Needless to say, similar computations hold when the outstanding variable is another $x_i$, $i\in\{2,\ldots,n\}$. Since these are subsets of $\R^k$, then we can use the usual frame $(\partial_1,\ldots,\partial_k)$. 
+We make some computations: The Killing vector is $K=\partial_n$, so that $c=g(K,K)=1/x_1^2$. With the help of 	$p=(x_1,\ldots,x_{n})\in\Omega$, $X\in T_p\mathbb{H}^{n}$, we obtain 
+\begin{align*}
+& x_1(F(p))=x_1, \quad  
+dF_p(X)=(X,du_p(X)), \quad 
+\nabla u (p) = x_1^2 u'(x_1)\partial_1, \\
+& W=\sqrt{x_1^2+\vert \nabla u\vert^2} = x_1\sqrt{1+u'(x_1)^2}, \quad 
+\frac{\nabla u}{W}  = \frac{x_1\,u'(x_1)}{\sqrt{1+u'(x_1)^2}}\partial_1. \\
+%& \nabla u(\log (x_1)) = x_1 u'(x_1)\partial_1.
+\end{align*}
+In general, $\mathrm{div}(fX)=X(f)+f\mathrm{div}(X)$. 
+\[
+\mathrm{div}_{\H{n}}\left(\frac{\nabla u}{W} \right)  = \partial_1\left( \frac{x_1 u'(x_1)}{\sqrt{1+u'(x_1)^2}}  \right) +
+\frac{x_1 u'(x_1)}{\sqrt{1+u'(x_1)^2}}  \mathrm{div}_{\H{n}}(\partial_1).
+\]
+Given the standard frame $(\partial_1,\ldots,\partial_{n})$ in $\mathbb{H}^{n}$, an orthonormal frame is $(E_i=x_1\partial_i :  i=1, \ldots, n)$. In addition, $[\partial_i,\partial_j]=0=\nabla_{\partial_i}\partial_j-\nabla_{\partial_j}\partial_i$. Then, 
+\begin{gather*}
+\mathrm{div}(\partial_1) = \sum_i g\left(\nabla_{E_i}\partial_1,E_i\right) 
+=x_1^2 \sum_i g\left(\nabla_{\partial_i}\partial_1,\partial_i\right) 
+=x_1^2 \sum_i g\left(\nabla_{\partial_1}\partial_i,\partial_i\right) \\
+ = x_1^2\sum_i \frac12 \partial_1\left( g(\partial_i,\partial_i)\right) 
+= x_1^2\sum_i \frac12 \partial_1\left( \frac{1}{x_1^2} \right) = \frac{-n}{x_1}.
+\end{gather*}
+According to \eqref{aleluya},
+\begin{align*}
+& \frac{1+x_1 u'(x_1)}{x_1\sqrt{1+u'(x_1)^2}}  
+= \mathrm{div}\left(\frac{\nabla u}{W}\right) 
+= \partial_1\left( \frac{x_1 u'(x_1)}{\sqrt{1+u'(x_1)^2}}  \right) + 
+\frac{(-n)u'(x_1)}{\sqrt{1+u'(x_1)^2}} \\
+& = -\frac{n u'(x_1)}{\sqrt{1+u'(x_1)^2}} +\frac{u'(x_1)+x_1u''(x_1)}{\sqrt{1+u'(x_1)^2}} +
+\frac{x_1 u'(x_1)}{ -2  } \frac{2u'(x_1) u''(x_1)}{\sqrt{(1+u'(x_1)^2)^3}} \\
+& = \frac{(1-n)u'(x_1)  +x_1u''(x_1)}{\sqrt{1+u'(x_1)^2}} 
+- \frac{x_1 u'(x_1)^2  u''(x_1)}{\sqrt{(1+u'(x_1)^2)^3}}
+\\
+& = \frac{(1-n)u'(x_1)(1+u'(x_1)^2)+x_1u''(x_1)+x_1u'(x_1)^2u''(x_1)-x_1u'(x_1)^2u''(x_1)
+}{\sqrt{(1+u'(x_1)^2)^3}} \\
+& = \frac{ x_1 u''(x) +(1-n) u'(x_1)(1+u'(x_1)^2)}{\sqrt{(1+u'(x_1)^2)^3}},  
+\end{align*}
+\begin{equation}\label{TShorosphere}
+u''(x_1) =\frac{1+u'(x_1)^2}{x_1^2}\left ( 1+(x_1+n-1)u'(x_1)\right). 
+\end{equation}
+Note that when $n=1$, we obtain \eqref{HGrimReaper}.
+
+Now, assume that $u:J\subset (0,+\infty)\rightarrow\R$ is a solution to \eqref{TShorosphere}. Then, its graph  $\mathcal{M}_u=\{(x_1,\ldots,x_{n+1})\in\mathbb{H}^{n+1} : x_1\in J, x_n=u(x_1) \}$ is a Rigid Translator in the direction of $K=\partial_{n+1}$, foliated by $(n-1)$-horospheres, because it is invariant by the action of the Lie group $\R^{n-1}$ (see page ***). Then, any Rigid Translator in the direction of $K=\partial_n$ foliated by $(n-1)$-horospheres will be called \textit{Horocylinder}. In other words, Each solution $u:J\subset (0,+\infty)\rightarrow\R$ to \eqref{TShorosphere} provides  an example of a Horocylinder.
+
+Since $t\in I\subset(0,+\infty)$, we can set $s=1/t\in(0,+\infty)$. We make the following transformation:
+\[ v(s) = -\int u'(1/s)ds. 
+\]
+Clearly, $v'(s)=-u'(1/s)$, and we obtain 
+\begin{equation}\label{rata}
+v''(s) = \big(1+v'(s)^2\big) \Big( 1- v'(s)\frac{1+(n-1)s}{s}\Big).
+\end{equation}
+If we define the functions $q,h:(0,\infty)\rightarrow\R$, $q(s)=\frac{s}{1+(n-1)s}$, $h(s)=\frac{1+(n-1)s}{s}$, note that $q=1/h$, $h>0$, $q(0)=0$, $\lim_{s\to 0}h(s)=+\infty$, $1=\lim_{s\to 0} h'(s)/h(s)^2$. By Lemma \ref{AllSolutions}, we can obtain all solutions to \eqref{rata}, and there are two types. 
+
+The first one is an analytic function  $\hat{v}:[0,+\infty)\rightarrow\R$ such that $\hat{v}'(0)=0$. Returning to $\hat{u}(s)=-\int \hat{v}'(1/s)ds$, we obtain an entire Horocylinder ${F}_A:\mathbb{H}^{n}\rightarrow \mathbb{H}^{n+1}$, namely
+\[F_A: \mathbb{H}^{n}\rightarrow \mathbb{H}^{n+1}, \quad 
+F_A(x_1,\ldots,x_{n})=(x_1,\ldots,x_{n},\hat{u}(x_1)).\]
+In particular, it is complete. 
+
+The second type is actually a pair of solutions whose graphs  together make an analytic curve $\alpha:\R\rightarrow (0,\infty)\times\R$, $\alpha(t)=(\alpha_1(t),\alpha_2(t))$. Then, the associated hypersurface is 
+\[ F_{\alpha} : \R\times \R^{n-1}\rightarrow \mathbb{H}^{n+1}, F_{\alpha}(x_1,p_1,\ldots,p_{n-1}) = (p_1,\ldots,p_{n-1},\alpha_1(x_1),\alpha_2(x_1)).
+\]
+We will call this a \textit{Wing-like Horocylinder}. 
+\begin{theorem} Up to rigid motions of $\mathbb{H}^{n+1}$, any Horocylinder $F:\Omega\subset \mathbb{H}^{n}\rightarrow\mathbb{H}^{n+1}$ is an open subset of either:
+\begin{enumerate}
+\item The entire Horocylinder $F_A:\mathbb{H}^{n}\rightarrow\mathbb{H}^{n+1}$.
+\item A Wing-like Horocylinder. 
+\end{enumerate}
+\end{theorem}
+
+\section{hyperbolic geometry}
+\subsection{Killing vector fields with integrable orthogonal distribution on $\mathbb{H}^n$}
+Let $K$ be an arbitrary Killing vector field on $\mathbb{H}^n=\{x=(x_1,\dots x_n)\in\mathbb{R}^n|x_1>0\}$, with metric $g=\frac{1}{x_1^2}\sum_{i=1}^ndx_i\otimes dx_i$. 
+The isometry group acting of $\mathbb{H}^n$ is the group $SO(n,1)$ and a basis of the lie algebra $\mathfrak{so}(n,1)$ is given by
+\[\partial_{x_i},\quad x_i\partial_{x_j}-x_j\partial_{x_i},\,i<j,\quad E:=\sum_{i=1}^nx_i\partial_{x_i},\quad
+x_i E-\frac{1}{2}(\sum_{j=1}^n x_j^2)\partial_{x_i},i>1,\]
+where $1\leq i,j\leq n$. Hence we can write arbitrary Killing vector fields as
+\[K=\sum_{i>1}a_i\partial_{x_i}+\sum b_{ij}(x_i\partial_{x_j}-x_j\partial_{x_i})+cE+\sum_{i>1}d_i(x_i E-\frac{1}{2}(\sum_{j=1}^n x_j^2)\partial_{x_i})\]
+By our previous section the condition on $\mathcal{D}^{\perp}_K$ to be integrable is equivalent to
+$\iota_{K}g\wedge d(\iota_{K}g)=0$ and since $x_1$ is non-zero, to
+\begin{eqnarray}\label{eq_integrability_H}0=x_1^2\iota_{K}g\wedge d(x_1^2\iota_{K}g).\end{eqnarray}
+We have moreover
+\begin{eqnarray*}x_1^2\iota_{K}g&=&\sum_{1<i}a_id{x_i}+\sum_{1<i,j} b_{ij}(x_id{x_j}-x_jd{x_i})\\
+&&+c(d\frac{1}{2}(\sum_jx_j^2))+\sum_{i>1}d_i\big(\frac{1}{2}(\sum_jx_j^2)dx_i-x_id(\frac{1}{2}(\sum_jx_j^2))\big)\\
+&=&\sum_{i=1}a_id{y_i}+\sum_{i,j=1} b_{ij}(y_id{y_j}-y_jd{y_i})\end{eqnarray*}
+with $y_1:=\frac{1}{2}\sum_jx_j^2$, $y_i=x_i,\,i>1$, $c=a_1$, $b_{1j}=d_j$. \\
+Note that if we take instead $x_i=y_i$ for all i, this equation is exactly the one we find in $\mathbb{R}^n$.
+
+Condition \eqref{eq_integrability_H} is therefore equivalent to the system of equations 
+\begin{eqnarray*}
+\begin{cases}
+a_ib_{jk}-a_jb_{ik}+a_kb_{ij}
+=0,\, \textrm{for all }i<j<k\\
+b_{ij}b_{kl}-b_{ik}b_{jl}+b_{il}b_{jk}=0,\, \textrm{for all }i<j<k<l.
+\end{cases}
+\end{eqnarray*}
+This is equivalent to the system 
+\begin{eqnarray*}\begin{cases}
+B\wedge B=0\\
+A\wedge B=0,
+\end{cases}
+\end{eqnarray*}
+where $A=\sum_ia_idy_i$ is an arbitrary one-form with constant coefficients, and $B=\sum_{ij}b_{ij}dy_i\wedge dy_j$ an arbitrary two-form with constant coefficients. The first condition implies that $B = D \wedge C$ for some $D$ and $C$, and the second condition implies that $A$ is a linear combination of $D$ and $C$. In the case that $A \neq 0$ we can furthermore assume that $A=D$, so that $B = A \wedge C$. 
+%Moreover if $A = 0$ and $B \neq 0$,  up to applying a translation $y_i \mapsto y_i+c$ for some $i$ and %some $c \in \bR$, we can obtain $A \neq 0$, so let us assume that $A \neq 0$ and $B = A \wedge C$.
+
+Hence the general solution for a Killing vector field with integrable orthogonal distribution is given by
+\[K=\sum_{i>1}^na_i\partial_i+\sum_{1<i<j}(d_ic_j-d_jc_i)(x_i\partial_j-x_j\partial_i)+d_1\sum_{i=1}x_i\partial_i+\sum_{1<j}^n(d_1c_j-d_jc_1)\Big(\frac{1}{2}(\sum_{i=1}^nx_i^2)\partial_j-x_j(\sum_{i=1}x_i\partial_i)\Big),\]
+where either $a_i=0$ for all $i$, or else $a_i=d_i$ for all $i$.  The first term corresponds to (infinitesimal) translations, the second term to rotations, the third term to dilations and the fourth term to the conjugation of the translations by inversion in the sphere (let us call these inverted translations).  \\
+
+We now classify these up to hyperbolic isometries and nonzero rescaling.  Note that the hyperbolic isometries are generated by the translations (in the $x_2, \ldots, x_n$ directions), by the rotations (in these same directions), by dilations, and by inversion through the unit sphere. Let us assume that $K$ is a Killing vector field of the above form.
+
+First, if $K$ has no inverted translations, then there are two possibilities: (1) $D$ and $C$ are both in the $x_2, \ldots, x_n$ hyperplane: then $K$ is a Euclidean Killing vector field in this hyperplane and hence equivalent, via Euclidean isometries, to either a translation or a rotation; (2) $C=0$ and $K$ is a sum of an (infinitesimal) translation and a dilation. In the latter case, up to applying translations ($x_i \mapsto x_i+c$ for $i > 1$), we can in fact assume that $K$ is merely a dilation (a multiple of $E$), and up to rescaling we can set $K=E$.  
+%Moreover note that the two cases (1) and (2) are not equivalent to each other by applying Euclidean isometries or dilations, since these preserve the coefficient of $E$.
+
+Next assume that $K$ contains inverted translations.  Up to applying rotations and dilations, we can assume that the inverted translation component is $I_2 := \frac{1}{2}(\sum_{i=1}^nx_i^2)\partial_2-x_2(\sum_{i=1}x_i\partial_i)$. Now if we apply the translation $x_2 \mapsto x_2 + c$, this sends $I_2$
+to $I_2 - \frac{c^2}{2} \partial_2 - c E$. Up to this we can assume that the coefficient of $E$ is zero.  Moreover, if we apply the translation $x_j \mapsto x_j + c$ for $j > 2$, this sends $I_2$ to $I_2 + c(x_j \partial_2 - x_2 \partial_j) + \frac{c^2}{2} \partial_2$.  Up to applying these we can assume that there is no rotation in the $x_2,x_3$ directions.  Put together, this implies that $D=adx_2$ and $C=a^{-1} dx_1$ for some nonzero $a$, and by rescaling $K$ and applying a dilation, we can assume $a=\pm 1$.  Hence we obtain three possibilities: (a) $K=I_2$, (b) $K=I_2+\partial_2$, and (c) $K=I_2-\partial_2$. We analyze each of these separately.
+
+Applying inversion to case (a) we obtain a translation $K=\partial_2$, so we are back in the Euclidean case.  For case (b) we can apply the translation $x_2 \mapsto x_2 + \sqrt{2}$,  and we get $I_2 - \sqrt{2} E$, which after applying inversion followed by a translation becomes just a dilation.  In case (c) we can apply the translation $x_3 \mapsto x_3 + \sqrt{2}$, which yields $I_2+\sqrt{2} (x_3 \partial_2 - x_2 \partial_3)$, which after applying inversion followed by a translation is a rotation.  
+
+Put together we have shown that every nonzero Killing vector field with integrable orthogonal distribution can be turned into one of exactly three types by applying a hyperbolic isometry: (a) a Euclidean translation (of the hyperplane $x_2, \ldots, x_n$); (b) a Euclidean rotation; or (c) a dilation.  It is clear as before that for cases (a) and (b) we can pick a fixed choice of nonzero translation and rotation, and up to rescaling the Killing vector field and applying hyperbolic isometries we always can obtain it.
+
+It remains only to observe that (a) translations, (b) rotations, and (c) dilations are not equivalent to each other by hyperbolic isometries.  To see this, note that the orthogonal distributions to these vector fields have disjoint properties: in case (a) they are all tangent (at infinity) to each other along the boundary of upper half space, i.e., they intersect at the boundary but not in the interior of upper-half space; in case (b) the distributions all intersect in the interior of upper-half space (along a codimension-two plane); and in case (c) the distributions do not intersect in the interior or the boundary of upper-half space.  Therefore they are inequivalent.
+
+
+\section*{Acknowledgements}
+
+M.~Ortega has been partially financed by the Spanish Ministry of Economy and Competitiveness and European Regional Development Fund (ERDF), project  MTM2016-78807-C2-1-P.  
+
+\begin{thebibliography}{999}
+\bibitem{ALR} L.~,Alias, J.H.~Lira, M.~Rigoli, \textit{Mean curvature flow solitons in the presence of conformal vector fields}, M. J Geom Anal, pp 1--64 (2019)
+\bibitem{AS} C.~Arezzo, J.~Sun, \textit{Conformal solitons to the mean curvature flow and minimal submanifolds}, Math. Nachr. \textbf{286}, Issue 8-9 pp.772--790 (2013) 
+\bibitem{CS} L.~Calle, L.~Shahriyari, \textit{Translating graphs by mean curvature flow}, 
+\bibitem{CSS} J.~Clutterbuck, O.~C.~Schn\"urer, F.~Schulze, \textit{Stability of translating solutions to mean curvature flow}, Calculus of Variations and Partial Differential Equations \textbf{29}(2007), Issue 3, pp 281--293.
+\bibitem{DHL} M.,~Dajczer, P.~Hinojosa, J.H..~Lira, \textit{Killing graphs with prescribed mean curvature}, Calc. Var. Part. Diff. Eq., v.33,  n.2, p. 231--248 (2008).
+\bibitem{Escobales} R.~H.~Escobales, \textit{Riemannian Submersions with Totally Geodesic Fibers}, J. Diff. Geom. \textbf{10}(1975), 253--276.
+\bibitem{KO} E.~Kocakusakli, M.~Ortega, \textit{Extending Translating Solitons in Semi-Riemannian Manifolds}, preprint.
+\bibitem{LM}. J. H. ~Lira,  F. ~Martin, \textit{Translating solitons in Riemannian products}. J. Diff. Equations, v.266, n.22, p.7780--7812(2019).
+\bibitem{LO} M-A.~Lawn, M.~Ortega, \textit{Translating Solitons From Semi-Riemannian Submersions}, http://arxiv.org/abs/1607.04571
+\bibitem{LW} J.H. Lira, Wanderley \textit{Mean curvature flow of Killing graphs} Trans. Amer. Math. Soc. 367 (2015), 4703-4726 
+\bibitem{ON}  B.~O'Neill, Semi-Riemannian geometry. With applications to relativity. Pure and Applied Mathematics, 103. Academic Press, Inc. New York, 1983.
+\bibitem{S} K.~Smoczyk, \textit{A Relation between Mean Curvature Flow Solitons and Minimal Submanifolds}
+
+\end{thebibliography}
+
+
+
+
+\end{document}
+
+
+\subsection{Killing vector fields with integrable orthogonal distribution on $\mathbb{H}^n$}
+Let $K$ be an arbitrary Killing vector field on $\mathbb{H}^n=\{x=(x_1,\dots x_n)\in\mathbb{R}^n|x_1>0\}$, with metric $g=\frac{1}{x_1^2}\sum_{i=1}^ndx_i\otimes dx_i$. 
+The isometry group acting of $\mathbb{H}^n$ is the group $SO(n,1)$ and a basis of the lie algebra $\mathfrak{so}(n,1)$ is given by
+\[\partial_{x_i},\quad x_i\partial_{x_j}-x_j\partial_{x_i},\,i<j,\quad E:=\sum_{i=1}^nx_i\partial_{x_i},\quad
+x_i E-\frac{1}{2}(\sum_{j=1}^n x_j^2)\partial_{x_i},i>1,\]
+where $1\leq i,j\leq n$. Hence we can write arbitrary Killing vector fields as
+\[K=\sum_{i>1}a_i\partial_{x_i}+\sum b_{ij}(x_i\partial_{x_j}-x_j\partial_{x_i})+cE+\sum_{i>1}d_i(x_i E-\frac{1}{2}(\sum_{j=1}^n x_j^2)\partial_{x_i})\]
+By our previous section the condition on $\mathcal{D}^{\perp}_K$ to be integrable is equivalent to
+$\iota_{K}g\wedge d(\iota_{K}g)=0$ and since $x_1$ is non-zero, to
+\begin{eqnarray}\label{eq_integrability_H}0=x_1^2\iota_{K}g\wedge d(x_1^2\iota_{K}g).\end{eqnarray}
+We have moreover
+\begin{eqnarray*}x_1^2\iota_{K}g&=&\sum_{1<i}a_id{x_i}+\sum_{1<i,j} b_{ij}(x_id{x_j}-x_jd{x_i})\\
+&&+c(d\frac{1}{2}(\sum_jx_j^2))+\sum_{i>1}d_i\big(\frac{1}{2}(\sum_jx_j^2)dx_i-x_id(\frac{1}{2}(\sum_jx_j^2))\big)\\
+&=&\sum_{i=1}a_id{y_i}+\sum_{i,j=1} b_{ij}(y_id{y_j}-y_jd{y_i})\end{eqnarray*}
+with $y_1:=\frac{1}{2}\sum_jx_j^2$, $y_i=x_i,\,i>1$, $c=a_1$, $b_{1j}=d_j$. \\
+Note that if we take instead $x_i=y_i$ for all i, this equation is exactly the one we find in $\mathbb{R}^n$.
+
+Condition \eqref{eq_integrability_H} is therefore equivalent to the system of equations 
+\begin{eqnarray*}
+\begin{cases}
+a_ib_{jk}-a_jb_{ik}+a_kb_{ij}
+=0,\, \textrm{for all }i<j<k\\
+b_{ij}b_{kl}-b_{ik}b_{jl}+b_{il}b_{jk}=0,\, \textrm{for all }i<j<k<l.
+\end{cases}
+\end{eqnarray*}
+This is equivalent to the system 
+\begin{eqnarray*}\begin{cases}
+B\wedge B=0\\
+A\wedge B=0,
+\end{cases}
+\end{eqnarray*}
+where $A=\sum_ia_idy_i$ is an arbitrary one-form with constant coefficients, and $B=\sum_{ij}b_{ij}dy_i\wedge dy_j$ an arbitrary two-form with constant coefficients. The first condition implies that $B = D \wedge C$ for some $D$ and $C$, and the second condition implies that $A$ is a linear combination of $D$ and $C$. In the case that $A \neq 0$ we can furthermore assume that $A=D$, so that $B = A \wedge C$. 
+%Moreover if $A = 0$ and $B \neq 0$,  up to applying a translation $y_i \mapsto y_i+c$ for some $i$ and %some $c \in \bR$, we can obtain $A \neq 0$, so let us assume that $A \neq 0$ and $B = A \wedge C$.
+
+Hence the general solution for a Killing vector field with integrable orthogonal distribution is given by
+\[K=\sum_{i>1}^na_i\partial_i+\sum_{1<i<j}(d_ic_j-d_jc_i)(x_i\partial_j-x_j\partial_i)+d_1\sum_{i=1}x_i\partial_i+\sum_{1<j}^n(d_1c_j-d_jc_1)\Big(\frac{1}{2}(\sum_{i=1}^nx_i^2)\partial_j-x_j(\sum_{i=1}x_i\partial_i)\Big),\]
+where either $a_i=0$ for all $i$, or else $a_i=d_i$ for all $i$.  The first term corresponds to (infinitesimal) translations, the second term to rotations, the third term to dilations and the fourth term to the conjugation of the translations by inversion in the sphere (let us call these inverted translations).  \\
+
+We now classify these up to hyperbolic isometries and nonzero rescaling.  Note that the hyperbolic isometries are generated by the translations (in the $x_2, \ldots, x_n$ directions), by the rotations (in these same directions), by dilations, and by inversion through the unit sphere. Let us assume that $K$ is a Killing vector field of the above form.
+
+First, if $K$ has no inverted translations, then there are two possibilities: (1) $D$ and $C$ are both in the $x_2, \ldots, x_n$ hyperplane: then $K$ is a Euclidean Killing vector field in this hyperplane and hence equivalent, via Euclidean isometries, to either a translation or a rotation; (2) $C=0$ and $K$ is a sum of an (infinitesimal) translation and a dilation. In the latter case, up to applying translations ($x_i \mapsto x_i+c$ for $i > 1$), we can in fact assume that $K$ is merely a dilation (a multiple of $E$), and up to rescaling we can set $K=E$.  
+%Moreover note that the two cases (1) and (2) are not equivalent to each other by applying Euclidean isometries or dilations, since these preserve the coefficient of $E$.
+
+Next assume that $K$ contains inverted translations.  Up to applying rotations and dilations, we can assume that the inverted translation component is $I_2 := \frac{1}{2}(\sum_{i=1}^nx_i^2)\partial_2-x_2(\sum_{i=1}x_i\partial_i)$. Now if we apply the translation $x_2 \mapsto x_2 + c$, this sends $I_2$
+to $I_2 - \frac{c^2}{2} \partial_2 - c E$. Up to this we can assume that the coefficient of $E$ is zero.  Moreover, if we apply the translation $x_j \mapsto x_j + c$ for $j > 2$, this sends $I_2$ to $I_2 + c(x_j \partial_2 - x_2 \partial_j) + \frac{c^2}{2} \partial_2$.  Up to applying these we can assume that there is no rotation in the $x_2,x_3$ directions.  Put together, this implies that $D=adx_2$ and $C=a^{-1} dx_1$ for some nonzero $a$, and by rescaling $K$ and applying a dilation, we can assume $a=\pm 1$.  Hence we obtain three possibilities: (a) $K=I_2$, (b) $K=I_2+\partial_2$, and (c) $K=I_2-\partial_2$. We analyze each of these separately.
+
+Applying inversion to case (a) we obtain a translation $K=\partial_2$, so we are back in the Euclidean case.  For case (b) we can apply the translation $x_2 \mapsto x_2 + \sqrt{2}$,  and we get $I_2 - \sqrt{2} E$, which after applying inversion followed by a translation becomes just a dilation.  In case (c) we can apply the translation $x_3 \mapsto x_3 + \sqrt{2}$, which yields $I_2+\sqrt{2} (x_3 \partial_2 - x_2 \partial_3)$, which after applying inversion followed by a translation is a rotation.  
+
+Put together we have shown that every nonzero Killing vector field with integrable orthogonal distribution can be turned into one of exactly three types by applying a hyperbolic isometry: (a) a Euclidean translation (of the hyperplane $x_2, \ldots, x_n$); (b) a Euclidean rotation; or (c) a dilation.  It is clear as before that for cases (a) and (b) we can pick a fixed choice of nonzero translation and rotation, and up to rescaling the Killing vector field and applying hyperbolic isometries we always can obtain it.
+
+It remains only to observe that (a) translations, (b) rotations, and (c) dilations are not equivalent to each other by hyperbolic isometries.  To see this, note that the orthogonal distributions to these vector fields have disjoint properties: in case (a) they are all tangent (at infinity) to each other along the boundary of upper half space, i.e., they intersect at the boundary but not in the interior of upper-half space; in case (b) the distributions all intersect in the interior of upper-half space (along a codimension-two plane); and in case (c) the distributions do not intersect in the interior or the boundary of upper-half space.  Therefore they are inequivalent.
+
+
+%These three are all inequivalent by applying translations and dilations, and hence also by applying rotations (since we can always perform the rotation last). Moreover 
+
+We make some computations:
+\begin{align*}
+& x_1(F(t))=t, \quad  
+F'(t)=(1,u'(t))\equiv (\partial_1+u'(t)\partial_2)\vert_{F(t)}, \quad 
+\nabla u (t) = t^2 u'(t)\partial_t, \\
+& \vert \nabla u\vert ^2 =\frac{1}{t^2} t^4 u'(t)^2 = t^2 u'(t)^2, \quad 
+c=g(\partial_2,\partial_2)\vert_{F(t)} = \frac{1}{t^2}, 
+\\
+& W(t)=\sqrt{t^2+\vert \nabla u\vert^2} = t\sqrt{1+u'(t)^2}, \quad 
+\frac{\nabla u}{W} (t) = \frac{t\,u'(t)}{\sqrt{1+u'(t)^2}}\partial_t,\\
+& \frac{1+x_1u_1}{W}(F(t)) = \frac{1+t\,u'(t)}{t\sqrt{1+u'(t)^2}}.
+\end{align*}
+We put $a(t)=tu'(t)/\sqrt{1+u'(t)^2}$. We wish to compute 
+\begin{align*}
+\mathrm{div}_{_{\H{1}}}\left(\frac{\nabla u}{W} \right)  = a' + a\, \mathrm{div}_{_{\H{1}}}\big(\partial_t \big).
+\end{align*}
+\[
+\mathrm{div}_{_{\H{1}}}\big(\partial_t \big) = g\left(\nabla_{t\partial_t} \partial_t,t\partial_t\right)
+= t^2 g\left(\nabla_{\partial_t} \partial_t,\partial_t\right) = \frac{t^2}{2}\partial_t \Big( g(\partial_t,\partial_t)\Big) = \frac{-1}{t}, 
+\]
+\begin{align*}
+\mathrm{div}_{_{\H{1}}}\left(\frac{\nabla u}{W} \right)  = 
+\left( \frac{t\, u'(t)}{\sqrt{1+u'(t)^2}} \right)' - \frac{u'(t)}{\sqrt{1+u'(t)^2}} 
+= \frac{t\,u''(t)}{ \sqrt{ \big(1+u'(t)^2\big)^3}}.
+\end{align*}
+Next, by \eqref{aleluya}, 
+\[ \frac{t\,u''(t)}{ \sqrt{ \big(1+u'(t)^2\big)^3}} = \frac{1+t\,u'(t)}{t\sqrt{ 1+u'(t)^2}}, 
+\]
+and finally, 
+\begin{equation} \label{HGrimReaper} 
+ u''(t) = \frac{ \big(1+u'(t)^2\big)\big( 1+t\,u'(t)\big)}{t^2}.
+\end{equation}
+
+%To study this equation, we call $v(t)=u'(t)$, so that
+%\begin{equation} \label{derivada}
+%v'(t) =  \frac{ \big(1+v(t)^2\big)\big( 1+t\,v(t)\big)}{t^2}.
+
+%\end{equation}
+
+
+\section{A Technical Lemma}
+Consider the following differential equation
+\begin{equation} \label{ODE} v''(s) = \left(1+v'(s)^2\right)\left(1-h(s)v'(s)\right).
+\end{equation}
+such that $h\in C^1(a,b)$
+We can rewrite this equation as an ODE of order 1 such that the right hand side can be seen as a polynomial in $w$. 
+\begin{eqnarray*}\label{ODE2}
+ w'= \left(1+w^2\right)\left(1-hw\right)=:P_h(w).
+\end{eqnarray*}
+
+The only zeros of $P_h(w)$ are in $\frac{1}{h}$. Note that it is not a solution unless $h$ is constant. Since $1+w^2>0$, 
+\begin{itemize}\item[a)] if for some $s_0$, a solution $w$ is such that $w(s_0)<\frac{1}{h(s_0)}$, then $w'(s_0)>0$. This means, that on some interval $[s_0,s_0+\epsilon)$, $w$ tends to the curve $\frac{1}{h}$ from below if $-\frac{h'}{h^2}<0$ or equivalently if $\frac{1}{h}$ decreasing (then $h$ is increasing) (and possibly intersects it eventually). It stays bounded above by $\frac{1}{h}$ if $-\frac{h'}{h^2}>0$, i.e when $\frac{1}{h}$ increasing ($h$ is decreasing), as any solution can only intersect the graph of $\frac{1}{h}$ horizontally. This also means that if the function $\frac{1}{h}$ is monotonic, its graph can be crossed by the solution at most once in a point $s_0$.
+\item[b)]  similarly if for some $s_0$, a solution $w$ is such that $w(s_0)>\frac{1}{h(s_0)}$, then $w'(s_0)<0$. This means that $w$ tends to the curve $\frac{1}{h}$ from above if $-\frac{h'}{h^2}>0$, or equivalently if $h$ is decreasing. It stays bounded below by $\frac{1}{h}$ if $-\frac{h'}{h^2}<0$.
+\end{itemize}
+This means that the function $\frac{1}{h}$ works like an attractor for the solution $w$.
+\\
+We remind of the following existence results, whose proofs can for example be found in \cite{KO}.
+\begin{proposition}
+\begin{itemize}
+\item[1)] Let $a,b\in\mathbb{R}$, $s_0\in (a,b)$. Then the initial value problem 
+\[w'= \left(1+w^2\right)\left(1-hw\right),\quad w(s_0)=w_0\]
+has a unique $C^2$-solution $w$ on $(s_0-\delta,b)$ for some $\delta>0$
+\item[2)]
+\end{itemize}
+\end{proposition}
+%This means in particular that a solution $w(s)$ cannot become infinite and hence exists as long as the function $\frac{1}{h}$ is bounded. We can now prove the following .
+\begin{lemma}\label{AllSolutions} Let $h\in C^1[a,b)$ be a function such that $h>0$, $\lim_{s\to a}h(s)=+\infty$ and $\lim_{s\to a} \frac{h'(s)}{h(s)}$ $=h_1>0$. 
+Consider the following differential equation
+\begin{equation} \label{elproblema} v''(s) = \left(1+v'(s)^2\right)\left(1-h(s)v'(s)\right).
+%, \quad v'(s_o)=x_0, \ v(s_o)=x_1.
+\end{equation}
+\begin{enumerate}[A)]
+\item Given $x_1\in\R$, there exists a unique $\hat{v}\in C^2[a,b)$ solution to \eqref{elproblema} such that $\hat{v}(a)=x_1$. In such case, $\hat{v}'(a)=0$. \MA{(Is that the bowl solution? It is not in \cite{LO} I believe})
+\item Given $(s_o,x_1)\in (a,b)\times\R$, there exist two solutions to \eqref{elproblema} $v_{\pm}\in C^2(s_o,b)\cap C^0[s_o,b)$ such that $v_{\pm}(s_o)=x_1$, $\lim_{s\to s_o}v_{\pm}(s)=\pm \infty$. Moreover, the union of the graphs of both maps make a $C^2$ curve in $\R^2$. 
+\item Given $s_o\in (a,b)$, any other solution to \eqref{elproblema} $v\in C^2(s_o-\varepsilon,s_o+\varepsilon)$ can be extended to one of the above cases A) or B). 
+\end{enumerate}
+\end{lemma}
+
+\MA{\textbf{\textup{Shouldn't it be (a,b], as $h$ can't obviously be continuous in $a$? I don't really understand the condition on $\frac{h'(s)}{h(s)}$ either. Unless you mean $\frac{h'(s)}{h(s)^2}$ and then I could relate it to my above considerations (but anyway here it doesn't really matter since $h>0$, so the sign of both expressions are the same), this would mean that $\frac{1}{h}$ is decreasing...which doesn't make sense, neither the fact that the limit should be a positive number as it should tend to infinity I believe. So I think this conditions are wrong or something got mixed up. I can't really find any proper and clear reference either to that.}}}
+\begin{proof} Cases A) and B) are essentially done in \cite{LO}. The only remaining detail is that the boundary problem associated with $s_0=a$ and $v'(s_o)\neq 0$, is not well-posed, and cannot admit any solution. However, in order to show that case C) holds, we need again many of the computations, so we repeat them here for the sake of clearness.
+
+If we call $w=v'$, \eqref{elproblema} reduces to 
+\begin{equation}\label{problemaderivada} w'(s) = \left(1+w(s)^2\right)\left(1-h(s)w(s)\right).
+\end{equation}
+
+Assume for a moment that a solution $v$ to \eqref{elproblema} admits an inverse $z$ in a small interval (which is not relevant by now), namely, $v\circ z= Id$ (identity map.) Taking derivatives twice, we obtain $v'(z)z'=1$ and $v''(z)(z')^2+v'(z)z''=0$, so that $v''(z)=-z''/(z')^3$. By inserting this information in \eqref{elproblema}, we obtain
+\begin{align*} & \frac{-z''(t)}{z'(t)^3} = v''(z(t)) = \left(1+v'(z(t))^2\right) \left( 1 - h(z(t)) v'(z(t)) \right) \\
+& = \left( 1+\frac{1}{z'(t)^2}\right) \left(1-\frac{h(z(t)) }{z'(t)}\right) = \frac{\left( 1+z'(t)^2 \right) \left( z'(t)-h(z(t))\right) }{z'(t)^3} ,
+\end{align*}
+that is to say, 
+\begin{equation}
+\label{problemainverso} z''(t) = \left( 1+z'(t)^2 \right) \left( h(z(t))-z'(t))\right) . 
+\end{equation}
+By considering the conditions $z'(t_o)=0$ and $z(t_o)=s_o$, 
+%we  obtain Case B). Indeed, 
+the solution will be defined on a small interval around $t_o$. Also, $z''(t_o)= h(z(t_o))=h(s_o)>0.$ This shows that the graph of $z$ will be above the tangent line in a small interval around $t_0$. Therefore, if we want to recover the original function, there will be two of them satisfying the conditions on Case B), in a small interval. Since $h>0$, we can extend them to the whole interval $[s_0,b)$ by a result in \cite{LO}.
+
+
+Now, let us see Case C). Consider a solution $v\in C^2(s_0-\varepsilon,s_o+\varepsilon)$ to \eqref{elproblema}, and assume it is different from Case A. Its derivative $w=v'$ will be a solution to \eqref{problemaderivada} $w\in C^1(s_o-\varepsilon,s_o+\varepsilon)$, such that $w(s_o)=w_o\in\R$. Clearly, we can reconstruct $v(s) = v(s_o)+\int_{s_o}^s w(x)dx.$
+
+Since $w$ is a solution to \eqref{problemaderivada}, either it can be  boundedly extended up to $(a,+\infty)$, or it will have a finite time blow-up.  We suppose that the derivative $w=v'$ has a finite-time blow up at some point $s_1\in [a,s_o)$. Due to it, function $v$ will be injective close enough to $s_1$. 
+
+
+\noindent \textit{Case 1)} There exists $\lim_{s\to s_1} v(s)=:v(s_1)\in\R$. We take the inverse map of $v$, defined on a small interval $z:(v(s_1),v(s_1)+\varepsilon)\rightarrow\R$, which is a solution to \eqref{problemainverso}. Note 
+\[\lim_{t\to v(s_1)} z'(s) = \frac{1}{\lim_{t\to v(s_1)} v'(z(t))} = 0. 
+\]
+Also,  $\lim_{t\to v(s_1)}z(t) = s_1$. We can extend $z$ a little more beyond $v(s_1)$, so that functions $v'$ and $v''$ do exist, and they are continuous, in a small interval containing $s_1$. If $s_1>a$, then $\lim_{t\to v(s_1)} z''(t) = h(z(v(s_1)))=h(s_1)>0$, and we readily obtain Case B). If $s_1=a$, we get $\lim_{t\to v(s_1)} z''(t) = \lim_{t\to v(a)}h(z(t))=\lim_{s\to a}h(s)=+\infty$. This is a contradiction. \\
+
+\noindent \textit{Case 2)}  There exists $\lim_{s\to s_1} v(s)=\pm \infty$. We study the case $+\infty$. We obtain  $z:(x_1,+\infty)\rightarrow\R$ with $\lim_{t\to +\infty} z(t)=s_1$. In particular, it holds $\lim_{t\to +\infty} z'(t)=0$ and $\lim_{t\to +\infty} z''(t)=0$. We come back to \eqref{problemainverso}, so that 
+\[
+ 0 = \lim_{t\to +\infty} z''(t) = \lim_{t\to +\infty} \left( 1+z'(t)^2 \right) \left( h(z(t))-z'(t))\right) = \lim_{s\to s_1} h(s)>0.
+\]
+This is a  contradiction. We can discard the case $z:(-\infty,x_1)\rightarrow\R$ in  a similar way. 
+\end{proof}
+
+
+\color{black}
